@@ -1,0 +1,8 @@
+.photo-size {
+  object-fit: cover;
+  height: 60vh;
+}
+
+.fas-size {
+  font-size: 2rem;
+}

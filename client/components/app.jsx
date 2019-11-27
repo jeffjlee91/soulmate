@@ -1,8 +1,11 @@
 import React from 'react';
+import DetailedProfileView from './detailed-profile-view';
 
 export default class App extends React.Component {
 
   render() {
-    return <h1>Hello</h1>;
+    return (
+      <DetailedProfileView />
+    );
   }
 }
