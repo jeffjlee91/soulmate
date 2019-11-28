@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Main extends React.Component {
+export default class MainLogin extends React.Component {
   render() {
     return (
       <div className="container bg-color">
