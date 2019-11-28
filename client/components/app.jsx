@@ -1,8 +1,10 @@
 import React from 'react';
+import SignIn from './sign-in';
 
+export default class App extends React.Component {
   render() {
     return (
-      <h1>hello</h1>
+      <SignIn />
     );
   }
 }
