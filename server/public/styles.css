@@ -1,8 +1,23 @@
 .photo-size {
   object-fit: cover;
-  height: 60vh;
+  height: 50vh;
 }
 
 .fas-size {
   font-size: 2rem;
+}
+
+.bg-color {
+  background-color: #EAEAEA;
+}
+
+.input {
+  background: #FFFFFF;
+  border: 0.5px solid #EAEAEA;
+  box-sizing: border-box;
+  box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.button {
+  width: 30vw;
 }

@@ -3,7 +3,7 @@ import React from 'react';
 export default class DetailedProfileView extends React.Component {
   render() {
     return (
-      <div className="container border bg-white">
+      <div className="container bg-color">
         <div className="d-flex justify-content-between align-items-center">
           <i className="fas fa-angle-left fas-size p-2"></i>
           <i className="fas fa-bars fas-size p-2"></i>
