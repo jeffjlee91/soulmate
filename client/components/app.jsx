@@ -1,10 +1,10 @@
 import React from 'react';
-import SignIn from './sign-in';
+import NewUser from './new-user';
 
 export default class App extends React.Component {
   render() {
     return (
-      <SignIn />
+      <NewUser />
     );
   }
 }

@@ -1,21 +1,56 @@
 import React from 'react';
 
 export default class NewUser extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      imageFile: {},
+      filePath: ''
+    };
+  }
+
+  fileSelectHandler(event) {
+    this.setState({
+      imageFile: event.target.files[0]
+    });
+  }
+
+  uploadHandler(event) {
+    const fd = new FormData();
+    fd.append('image', this.state.imageFile, this.state.imageFile.name.split('.').splice(1).join(''));
+    const req = {
+      method: 'POST',
+      body: fd
+    };
+    fetch('/api/upload-image', req)
+      .then(res => res.json())
+      .then(result => {
+        this.setState({
+          filePath: result.split('/').slice(2).join('/')
+        });
+      })
+      .catch(err => alert('uploaderHandler error', err));
+    event.preventDefault();
+  }
+
   render() {
     return (
       <div className="container bg-color pb-2">
         <div className="d-flex justify-content-left align-items-center">
           <i className="fas fa-angle-left fas-size p-2"></i>
         </div>
-        <form>
+
+        <form onSubmit={this.uploadHandler.bind(this)}>
           <div className="form-group row">
-            <img src="/images/Sarah.png" className="photo-size col-12" />
+            <img src={this.state.filePath} className="photo-size col-12" />
           </div>
-
-          <div className="form-group btn btn-secondary btn-rounded">
-            <input type="file" placeholder='dfd'/>
+          <div className="form-group row d-flex justify-content-center">
+            <input type="file" className="btn btn-secondary col-8" onChange={this.fileSelectHandler.bind(this)}/>
+            <button type="submit" name="upload" className="btn btn-primary btn-block col-3 ml-2">Upload</button>
           </div>
+        </form>
 
+        <form>
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input type="email" className="form-control form-rounded input" id="email"
@@ -39,7 +74,7 @@ export default class NewUser extends React.Component {
             <div className="col-6">
               <label htmlFor="lastName">Last Name</label>
               <input type="text" className="form-control form-rounded input" id="lastName"
-                placeholder="Lirst name" minLength='1' required />
+                placeholder="Last name" minLength='1' required />
               <div className="invalid-feedback">Cannot be empty!</div>
             </div>
           </div>
