@@ -1,12 +1,12 @@
 import React from 'react';
 
-import NewUser from './new-user';
+import ChangePassword from './change-password';
 
 export default class App extends React.Component {
   render() {
     return (
 
-      <NewUser />
+      <ChangePassword />
 
     );
   }
