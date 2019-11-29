@@ -1,6 +1,5 @@
 .photo-size {
-  object-fit: cover;
-  height: 50vh;
+  object-fit: contain;
 }
 
 .fas-size {
