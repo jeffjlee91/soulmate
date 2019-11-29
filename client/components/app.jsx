@@ -1,10 +1,13 @@
 import React from 'react';
-import MainLogin from './main-login';
+
+import NewUser from './new-user';
 
 export default class App extends React.Component {
   render() {
     return (
-      <MainLogin />
+
+      <NewUser />
+
     );
   }
 }
