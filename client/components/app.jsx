@@ -1,12 +1,12 @@
 import React from 'react';
 
-import ChangePassword from './change-password';
+import Menu from './menu';
 
 export default class App extends React.Component {
   render() {
     return (
 
-      <ChangePassword />
+      <Menu />
 
     );
   }
