@@ -1,11 +1,11 @@
 <?php
 $link = get_db_link();
 
-if($request['method'] === 'GET') {
+if($request['method'] === 'POST') {
   $email = $request['body']['email'];
   $password = $request['body']['password'];
   //check if request body is empty or not
-  if(!$email || !$password) {
+  if(!$email) {
     $response['body'] = 'empty input';
   } else {
     //get email from database
@@ -31,5 +31,10 @@ if($request['method'] === 'GET') {
       }
     }
   }
+  send($response);
+}
+
+if($request['method'] === 'GET') {
+  $response['body'] = 'hello';
   send($response);
 }

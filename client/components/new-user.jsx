@@ -28,16 +28,18 @@ export default class NewUser extends React.Component {
   }
 
   createHandler() {
-    const req = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(this.state.newUser)
-    };
-    fetch('api/new-user', req)
-      .then(res => res.json())
-      .then(result => {
-        // ....
-      }).catch(err => alert('createHandler error', err));
+    event.preventDefault();
+
+    // const req = {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(this.state.newUser)
+    // };
+    // fetch('/api/new-user', req)
+    //   .then(res => res.json())
+    //   .then(result => {
+    //     // ....
+    //   }).catch(err => alert('createHandler error', err));
   }
 
   fileSelectHandler(event) {
@@ -63,8 +65,7 @@ export default class NewUser extends React.Component {
         const newUser = { ...this.state.newUser };
         newUser.images = result.split('/').slice(2).join('/');
         this.setState({ newUser });
-      })
-      .catch(err => alert('uploaderHandler error', err));
+      }).catch(err => alert('uploaderHandler error', err));
     event.preventDefault();
   }
 
@@ -74,11 +75,17 @@ export default class NewUser extends React.Component {
     this.setState({ newUser });
   }
 
+  backHandler() {
+    this.props.setView('main', {});
+  }
+
   render() {
     return (
       <div className="container bg-color pb-2">
         <div className="d-flex justify-content-left align-items-center">
-          <i className="fas fa-angle-left fas-size p-2"></i>
+          <i
+            className="fas fa-angle-left fas-size p-2"
+            onClick={this.backHandler.bind(this)}></i>
         </div>
 
         <form onSubmit={this.uploadHandler.bind(this)}>
@@ -291,7 +298,10 @@ export default class NewUser extends React.Component {
 
           <div className="d-flex justify-content-center">
             <button type="submit" className="btn btn-primary button">Create</button>
-            <button type="button" className="btn btn-secondary ml-5 button">Back</button>
+            <button
+              type="button"
+              className="btn btn-secondary ml-5 button"
+              onClick={this.backHandler.bind(this)}>Back</button>
           </div>
         </form>
       </div>
