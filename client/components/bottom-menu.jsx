@@ -1,3 +1,4 @@
+
 import React from 'react';
 class BottomMenu extends React.Component {
 
@@ -25,3 +26,4 @@ class BottomMenu extends React.Component {
   }
 }
 export default BottomMenu;
+
