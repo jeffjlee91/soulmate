@@ -11,9 +11,9 @@ if($request['method'] === 'POST') {
     //get email from database
     //prevent SQL injection
     $sqlCheckEmail =
-      "SELECT *
-    FROM users AS u
-    WHERE u.email = ?";
+    "SELECT *
+     FROM users AS u
+     WHERE u.email = ?";
     $stmt = $link->prepare($sqlCheckEmail);
     $stmt->bind_param("s", $email);
     $stmt->execute();
