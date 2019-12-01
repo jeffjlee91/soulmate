@@ -8,6 +8,7 @@ switch ($request['path']) {
     exit;
   case '/api/upload-image':
   case '/api/health-check':
+  case '/api/new-user':
   case '/api/sign-in':
     require_once "..${request['path']}.php";
   default:
