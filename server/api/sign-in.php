@@ -33,8 +33,3 @@ if($request['method'] === 'POST') {
   }
   send($response);
 }
-
-if($request['method'] === 'GET') {
-  $response['body'] = 'hello';
-  send($response);
-}
