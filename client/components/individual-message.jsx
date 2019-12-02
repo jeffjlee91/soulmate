@@ -3,12 +3,19 @@ import React from 'react';
 class LeftMessage extends React.Component {
   render() {
     return (
-      <div className="d-flex mb-2">
-        <img src="images/sarah.png" className="message-photo" />
-        <div className="d-flex">
-          <i className="fas fa-angle-left message-arrow-left"></i>
-          <p className="bg-white message-body align-self-center">Hello HelloHello HelloHello HelloHello HelloHello Hello
+      <div>
+        <div className="d-flex justify-content-center">
+          <div className="text-center message-date">
+            2019-12-02 04:48:07
+          </div>
+        </div>
+        <div className="d-flex mb-2">
+          <img src="images/sarah.png" className="message-photo" />
+          <div className="d-flex">
+            <i className="fas fa-angle-left message-arrow-left"></i>
+            <p className="bg-white message-body align-self-center">Hello HelloHello HelloHello HelloHello HelloHello Hello
               Hello HelloHello HelloHello HelloHello HelloHello HelloHello HelloHello Hello</p>
+          </div>
         </div>
       </div>
     );
@@ -18,13 +25,20 @@ class LeftMessage extends React.Component {
 class RightMessage extends React.Component {
   render() {
     return (
-      <div className="d-flex mb-2">
-        <div className="d-flex">
-          <p className="bg-white message-body align-self-center">Hello HelloHello HelloHello HelloHello HelloHello Hello
-              Hello HelloHello HelloHello HelloHello HelloHello HelloHello HelloHello Hello</p>
-          <i className="fas fa-angle-right message-arrow-right"></i>
+      <div>
+        <div className="d-flex justify-content-center">
+          <div className="text-center message-date">
+            2019-12-02 04:48:07
+          </div>
         </div>
-        <img src="images/Jeff.jpg" className="message-photo" />
+        <div className="d-flex mb-2">
+          <div className="d-flex">
+            <p className="bg-white message-body align-self-center">Hello HelloHello HelloHello HelloHello HelloHello Hello
+              Hello HelloHello HelloHello HelloHello HelloHello HelloHello HelloHello Hello</p>
+            <i className="fas fa-angle-right message-arrow-right"></i>
+          </div>
+          <img src="images/Jeff.jpg" className="message-photo" />
+        </div>
       </div>
     );
   }

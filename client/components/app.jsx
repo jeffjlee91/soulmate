@@ -10,7 +10,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'individual-message',
+        name: 'main',
         params: {}
       }
     };
