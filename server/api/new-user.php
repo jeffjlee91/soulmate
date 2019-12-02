@@ -34,9 +34,9 @@ if($request['method'] === 'POST') {
     //insert query
     $sqlInsertInfo =
       "INSERT INTO users (email, password, images, firstName, lastName, gender,
-    location, age, height, jobTitle, ethnicity, religion, iLike, iAm,
-    iAppreciate, createdAt)
-  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP)";
+        location, age, height, jobTitle, ethnicity, religion, iLike, iAm,
+        iAppreciate, createdAt)
+      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP)";
     $stmt = $link->prepare($sqlInsertInfo);
     $stmt->bind_param(
       "sssssssdsssssss",
@@ -62,7 +62,7 @@ if($request['method'] === 'POST') {
     //prepare new user info for frontend
     $sqlGetUserInfo =
       "SELECT * FROM users
-   WHERE users.userId = $userId";
+       WHERE users.userId = $userId";
     $newUserObj = $link->query($sqlGetUserInfo);
     $newUserInfo = mysqli_fetch_assoc($newUserObj);
     $response['body'] = $newUserInfo;
