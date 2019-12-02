@@ -2,13 +2,15 @@ import React from 'react';
 import MainLogin from './main-login';
 import SignIn from './sign-in';
 import NewUser from './new-user';
+import IndividualMessage from './individual-message';
+import DetailedProfileView from './detailed-profile-view';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'main',
+        name: 'individual-message',
         params: {}
       }
     };
@@ -36,6 +38,14 @@ export default class App extends React.Component {
       case 'new-user':
         return (
           <NewUser setView={this.setView}/>
+        );
+      case 'individual-message':
+        return (
+          <IndividualMessage setView={this.setView}/>
+        );
+      case 'profile':
+        return (
+          <DetailedProfileView setView={this.setView} />
         );
       default:
         return <h1>Misssssss Seplling</h1>;

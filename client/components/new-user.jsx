@@ -22,24 +22,28 @@ export default class NewUser extends React.Component {
         iAm: '',
         iAppreciate: ''
       },
-      imageFile: {}
+      imageFile: {},
+      emailCheck: ''
     };
     this.inputHandler = this.inputHandler.bind(this);
   }
 
   createHandler() {
     event.preventDefault();
-
-    // const req = {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(this.state.newUser)
-    // };
-    // fetch('/api/new-user', req)
-    //   .then(res => res.json())
-    //   .then(result => {
-    //     // ....
-    //   }).catch(err => alert('createHandler error', err));
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(this.state.newUser)
+    };
+    fetch('/api/new-user', req)
+      .then(res => res.json())
+      .then(result => {
+        if (result === 'email has already exist') {
+          this.setState({ emailCheck: 'The email has already existed' });
+        } else {
+          // get new user info for future use
+        }
+      }).catch(err => alert('createHandler error', err));
   }
 
   fileSelectHandler(event) {
@@ -108,6 +112,7 @@ export default class NewUser extends React.Component {
               placeholder="email"
               minLength='1'
               required/>
+            <div className="text-danger">{this.state.emailCheck}</div>
           </div>
 
           <div className="form-group">
