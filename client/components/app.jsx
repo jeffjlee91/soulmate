@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Menu from './menu';
+import MessageHistory from './message-history';
 
 export default class App extends React.Component {
   render() {
     return (
 
-      <Menu />
+      <MessageHistory />
 
     );
   }

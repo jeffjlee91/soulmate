@@ -113,3 +113,16 @@
 .red {
   color: red;
 }
+
+.mdate {
+  color: gray;
+  font-size: .69rem;
+}
+.mdate2 {
+  color: gray;
+  font-size: .85rem;
+}
+
+.likes-bottom-line {
+  border-bottom: 1px solid #636363;
+}
