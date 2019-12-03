@@ -6,9 +6,11 @@ switch ($request['path']) {
   case '/':
     readfile('index.html');
     exit;
-  case '/api/sign-in':
   case '/api/upload-image':
   case '/api/health-check':
+  case '/api/new-user':
+  case '/api/sign-in':
+  case '/api/individual-message':
     require_once "..${request['path']}.php";
   default:
     throw new ApiError("Cannot ${request['method']} ${request['path']}", 404);
