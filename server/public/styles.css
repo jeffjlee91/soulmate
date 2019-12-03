@@ -226,3 +226,9 @@ body {
 .likes-bottom-line {
   border-bottom: 1px solid #636363;
 }
+
+.likes-photo {
+  object-fit: cover;
+  width: 172.5px;
+  height: 172.5px;
+}
