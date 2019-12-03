@@ -6,6 +6,8 @@ import IndividualMessage from './individual-message';
 import DetailedProfileView from './detailed-profile-view';
 import DiscoverPage from './discover-page';
 import LikePage from './like-page';
+import Filter from './filter';
+import MessageHistory from './message-history';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -47,19 +49,30 @@ export default class App extends React.Component {
         );
       case 'profile':
         return (
-          <DetailedProfileView setView={this.setView} />
+          <DetailedProfileView setView={this.setView}/>
         );
       case 'discover-page':
         return (
-          <DiscoverPage setView={this.setView} />
-          );
+          <DiscoverPage
+            setView={this.setView}
+            currentUser={this.state.view.params}
+            currentPage="discover-page"/>
+        );
       case 'message-history':
         return (
-          <MessageHistory setView={this.setView} />
+          <MessageHistory
+            setView={this.setView}
+            currentPage="message-history"/>
         );
       case 'like-page':
         return (
-          <LikePage setView={this.setView} />
+          <LikePage
+            setView={this.setView}
+            currentPage="like-page"/>
+        );
+      case 'filter':
+        return (
+          <Filter />
         );
       default:
         return <h1>Misssssss Seplling</h1>;

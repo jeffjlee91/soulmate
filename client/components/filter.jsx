@@ -34,7 +34,6 @@ class Filter extends React.Component {
               <label htmlFor="city">City</label>
               <input type="text" className="form-control form-rounded input" id="city"
                 name="city"
-                value={this.state.city}
                 placeholder="City"
                 minLength='1'
                 required />
@@ -44,7 +43,6 @@ class Filter extends React.Component {
               <label htmlFor="state">State</label>
               <input type="text" className="form-control form-rounded input" id="state"
                 name="state"
-                value={this.state.state}
                 placeholder="CA"
                 minLength='2'
                 maxLength='2'
@@ -104,7 +102,7 @@ class Filter extends React.Component {
             <AgeSlider className='slider'/>
           </div>
 
-          <h7 className='filterLeftPadding filterBotMargin'>Height</h7>
+          <div className='filterLeftPadding filterBotMargin'>Height</div>
 
           <div className="form-group row filterLeftPadding">
             <div className="col-4 filterOptionMargin form-group topMargin">

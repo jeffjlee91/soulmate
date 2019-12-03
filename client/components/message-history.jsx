@@ -57,7 +57,9 @@ export default class MessageHistory extends React.Component {
           </div>
 
         </div>
-        <BottomMenu />
+        <BottomMenu
+          currentPage={this.props.currentPage}
+          setView={this.props.setView}/>
       </div>
     );
   }

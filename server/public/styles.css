@@ -50,14 +50,7 @@ body {
 }
 
 .fix-overlap {
-  margin-bottom: 56px;
-}
-
-.sitcky-bottom {
-  position: sticky;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  margin-bottom: 75px;
 }
 
 .fas-size {
