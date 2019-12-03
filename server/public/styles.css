@@ -164,6 +164,48 @@ body {
   color: red;
 }
 
+.white {
+  color: white;
+}
+
+.filterlist {
+  padding-top: 4rem;
+}
+
+.slidecontainer {
+  width: 80%; /* Width of the outside container */
+}
+
+.slider {
+  margin: .5rem;
+}
+
+.filterLeftPadding {
+  padding-left: 15px;
+}
+
+.paddingRight {
+  padding-right: 1rem;
+}
+
+.filterBotMargin {
+  margin-bottom: 1rem;
+}
+
+.heightRangeTo {
+  font-weight: bold;
+  padding-top: 10%;
+}
+
+.saveButton {
+  margin-bottom: 10px;
+  margin-left: 40%
+}
+
+.topMargin {
+  margin-top: 1rem;
+}
+
 .mdate {
   color: gray;
   font-size: .69rem;
