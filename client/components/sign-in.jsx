@@ -33,7 +33,7 @@ export default class SignIn extends React.Component {
             passwordCheck: 'Wrong password'
           });
         } else {
-          // getInfo from the user, pass to app for future use
+          this.props.setView('discover-page', result);
         }
       }).catch(err => alert('getUserInfo Error', err));
   }

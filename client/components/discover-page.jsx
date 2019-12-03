@@ -79,19 +79,21 @@ class DiscoverPage extends React.Component {
   // navbar fixed-bottom navbar-expand-sm navbar-dark gray
   render() {
     return (
-      <div className='container bg-color'>
+      <div className='bg-color'>
         <nav className="bg-color fixed-top navbar d-flex justify-content-between align-items-center">
           <i className="fas fa-sliders-h fas-size p-2"></i>
           <i className="fas fa-bars fas-size p-2"></i>
         </nav>
-        <div className='cardlist'>
+        <div className='container cardlist'>
           {this.state.users.map(user => {
             return (
               <DiscoverDetail key={user.userId} users={user}/>
             );
           })}
         </div>
-        <BottomMenu />
+        <BottomMenu
+          currentPage={this.props.currentPage}
+          setView={this.props.setView}/>
       </div>
     );
   }
