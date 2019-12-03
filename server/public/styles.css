@@ -227,6 +227,12 @@ body {
   border-bottom: 1px solid #636363;
 }
 
+.card-image-discover {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
 .likes-photo {
   object-fit: cover;
   width: 172.5px;
