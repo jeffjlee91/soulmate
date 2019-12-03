@@ -5,12 +5,19 @@ class DiscoverPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentUser: { gender: 'Male' },
       users: []
     };
   }
 
   getUsers() {
-    fetch('/api/discover-page')
+    const user = this.state.currentUser;
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(user)
+    };
+    fetch('/api/discover-page', req)
       .then(res => res.json())
       .then(users => {
         this.setState({
@@ -20,7 +27,7 @@ class DiscoverPage extends React.Component {
   }
 
   componentDidMount() {
-    this.getProducts();
+    this.getUsers();
   }
 
   render() {
