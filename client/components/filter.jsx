@@ -1,5 +1,5 @@
 import React from 'react';
-import AgeSlider from './ageSlider';
+import AgeSlider from './age-slider';
 
 class Filter extends React.Component {
   constructor(props) {
