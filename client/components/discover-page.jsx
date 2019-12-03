@@ -5,78 +5,31 @@ class DiscoverPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [
-        {
-          userId: 1,
-          age: '20',
-          city: 'rowland',
-          email: 'wenhao@soulmate.com',
-          ethnicity: 'Asian',
-          firstName: 'Sarah',
-          gender: 'Female',
-          height: "5'4",
-          iAm: 'I am superman.',
-          iAppreciate: 'I think my other half should be beautiful.',
-          iLike: 'I like to walk over the mountain.',
-          images: 'images/sarah.png',
-          jobTitle: 'fisherman',
-          lastName: 'wang',
-          password: 'root',
-          religion: 'Buddhist',
-          state: 'CA'
-        },
-        {
-          userId: 2,
-          age: '20',
-          city: 'rowland',
-          email: 'wenhao@soulmate.com',
-          ethnicity: 'Asian',
-          firstName: 'Wenhao',
-          gender: 'Female',
-          height: "5'11",
-          iAm: 'I am superman.',
-          iAppreciate: 'I think my other half should be beautiful.',
-          iLike: 'I like to walk over the mountain.',
-          images: 'images/Wenhao.png',
-          jobTitle: 'fisherman',
-          lastName: 'wang',
-          password: 'root',
-          religion: 'Buddhist',
-          state: 'CA'
-        },
-        {
-          userId: 3,
-          age: '24',
-          city: 'rowland',
-          email: 'wenhao@soulmate.com',
-          ethnicity: 'Asian',
-          firstName: 'Irene',
-          gender: 'Female',
-          height: "5'11",
-          iAm: 'I am superman.',
-          iAppreciate: 'I think my other half should be beautiful.',
-          iLike: 'I like to walk over the mountain.',
-          images: 'images/Irene.jpg',
-          jobTitle: 'fisherman',
-          lastName: 'wang',
-          password: 'root',
-          religion: 'Buddhist',
-          state: 'CA'
-        }
-      ]
+      currentUser: { gender: 'Male' },
+      users: []
     };
   }
 
-  // getUsers() {
-  //     fetch('')
-  //       .then(res => res.json())
-  //       .then(users => {
-  //         this.setState({
-  //           users: users
-  //         });
-  //       });
-  //   }
-  // navbar fixed-bottom navbar-expand-sm navbar-dark gray
+  getUsers() {
+    const user = this.state.currentUser;
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(user)
+    };
+    fetch('/api/discover-page', req)
+      .then(res => res.json())
+      .then(users => {
+        this.setState({
+          users: users
+        });
+      });
+  }
+
+  componentDidMount() {
+    this.getUsers();
+  }
+
   render() {
     return (
       <div className='bg-color'>

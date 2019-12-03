@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app';
+import DiscoverPage from './components/discover-page';
 
 ReactDOM.render(
-  <App />,
+  <DiscoverPage />,
   document.querySelector('#root')
 );
