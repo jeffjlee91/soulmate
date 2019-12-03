@@ -1,5 +1,4 @@
 import React from 'react';
-import MessageHistory from './message-history';
 import MainLogin from './main-login';
 import SignIn from './sign-in';
 import NewUser from './new-user';
@@ -12,7 +11,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'like-page',
+        name: 'individual-message',
         params: {}
       }
     };

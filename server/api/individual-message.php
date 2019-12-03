@@ -14,13 +14,17 @@ if($request['method'] === 'POST') {
     $stmt = $link->prepare($sqlInsertMessage);
     $stmt->bind_param("dds", $idFrom, $idTo, $message);
     $stmt->execute();
+    $messageId = $link->insert_id;
 
-    // $sqlGetInsertMessage =
-    // "SELECT * FROM messages
-    //  WHERE messages.createdAt = $idFrom AND messages.idTo = $idTo";
-    // $newMessageObj = $link->query($sqlGetInsertMessage);
-    // $newMessage = mysqli_fetch_assoc($newMessageObj);
-    $response['body'] = 'insert successfully';
+    $sqlGetInsertMessage =
+    "SELECT m.idFrom, m.message, u.images, m.createdAt
+     FROM messages AS m
+     JOIN users AS u
+     ON m.idFrom = u.userId
+     WHERE m.messageId = $messageId";
+    $newMessageObj = $link->query($sqlGetInsertMessage);
+    $newMessage = mysqli_fetch_assoc($newMessageObj);
+    $response['body'] = $newMessage;
   }
   send($response);
 }
