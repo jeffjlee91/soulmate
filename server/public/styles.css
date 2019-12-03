@@ -232,3 +232,9 @@ body {
   height: 300px;
   object-fit: cover;
 }
+
+.likes-photo {
+  object-fit: cover;
+  width: 172.5px;
+  height: 172.5px;
+}

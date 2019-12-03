@@ -5,6 +5,7 @@ import NewUser from './new-user';
 import IndividualMessage from './individual-message';
 import DetailedProfileView from './detailed-profile-view';
 import DiscoverPage from './discover-page';
+import LikePage from './like-page';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -51,6 +52,14 @@ export default class App extends React.Component {
       case 'discover-page':
         return (
           <DiscoverPage setView={this.setView} />
+          );
+      case 'message-history':
+        return (
+          <MessageHistory setView={this.setView} />
+        );
+      case 'like-page':
+        return (
+          <LikePage setView={this.setView} />
         );
       default:
         return <h1>Misssssss Seplling</h1>;
