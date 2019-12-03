@@ -120,7 +120,7 @@ class DiscoverDetail extends React.Component {
     return (
       <div>
         <div className='card text-center card-padding'>
-          <img src={this.props.users.images} className='card-img-top'></img>
+          <img src={this.props.users.images} className='card-img-top card-image-discover'></img>
           <div className='card-body'>
             <h2 className=''>{this.props.users.firstName}{', '}{this.props.users.age}</h2>
             <div>
