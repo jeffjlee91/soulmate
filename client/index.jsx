@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Filter from './components/filter';
+import App from './components/app';
 
 ReactDOM.render(
-  <Filter />,
+  <App />,
   document.querySelector('#root')
 );
