@@ -46,7 +46,8 @@ class DiscoverPage extends React.Component {
         </div>
         <BottomMenu
           currentPage={this.props.currentPage}
-          setView={this.props.setView}/>
+          setView={this.props.setView}
+          currentUser={this.props.currentUser}/>
       </div>
     );
   }

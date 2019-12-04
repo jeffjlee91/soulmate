@@ -25,21 +25,21 @@ class BottomMenu extends React.Component {
 
         <div
           className={`text-center width-25 ${likesOpac}`}
-          onClick={ () => this.props.setView('like-page') }>
+          onClick={() => this.props.setView('like-page', this.props.currentUser) }>
           <i className="fas fa-heart fa-lg lightgray "></i>
           <div className='lightgray '>Likes</div>
         </div>
 
         <div
           className={`text-center width-25 ${discoverOpac}`}
-          onClick={() => this.props.setView('discover-page')}>
+          onClick={() => this.props.setView('discover-page', this.props.currentUser)}>
           <i className="fas fa-search fa-lg lightgray "></i>
           <div className='lightgray '>Discover</div>
         </div>
 
         <div
           className={`text-center width-25 ${chatsOpac}`}
-          onClick={() => this.props.setView('message-history')}>
+          onClick={() => this.props.setView('message-history', this.props.currentUser)}>
           <i className="fas fa-comments fa-lg lightgray "></i>
           <div className='lightgray '>Chats</div>
         </div>

@@ -7,12 +7,12 @@ class IndividualLike extends React.Component {
     return (
       <div className="row mb-3 align-content-center">
         <div className="col-6">
-          <img src={this.props.user.images} className="rounded img-fluid photo-size" />
+          <img src={this.props.user.images} className="rounded img-fluid likes-photo" />
         </div>
-        <div className="col-6 align-content-center row likes-bottom-line row">
+        <div className="col-6 row likes-bottom-line row">
           <div className="mdate col-12 text-center">{data.split(' ').shift()}</div>
           <div className=" col-12 h2 text-center">{this.props.user.firstName}</div>
-          <div className=" col-12">
+          <div className=" col-12 row">
             <i className="fas fa-heart fas-size3 likeHeart red col-6"></i>
             <i className="fas fa-heart-broken fas-size3 likeHeart col-6"></i>
           </div>
@@ -35,7 +35,7 @@ export default class Likepage extends React.Component {
   }
 
   getLikesData() {
-    const currentUser = 5;
+    const currentUser = this.props.currentUser.userId;
     fetch(`/api/likes?idTo=${currentUser}`)
       .then(res => res.json())
       .then(likes => this.setState({ likes }))
@@ -56,6 +56,7 @@ export default class Likepage extends React.Component {
 
         <BottomMenu
           currentPage={this.props.currentPage}
+          currentUser={this.props.currentUser}
           setView={this.props.setView}/>
       </div>
     );

@@ -56,14 +56,14 @@ export default class IndividualMessage extends React.Component {
   }
 
   componentDidMount() {
-    this.getMessages(2, 4);
+    this.getMessages(this.props.userId.idFrom, this.props.userId.idTo);
   }
 
-  sendMessage(event) {
+  sendMessage() {
     if (this.state.newMessage) {
       const messageObj = {
-        idFrom: 2,
-        idTo: 4,
+        idFrom: this.props.userId.idFrom,
+        idTo: this.props.userId.idTo,
         message: this.state.newMessage
       };
       const req = {
@@ -97,7 +97,7 @@ export default class IndividualMessage extends React.Component {
   }
 
   render() {
-    const currentUserId = 2;
+    const currentUserId = this.props.userId.idFrom;
     return (
       <div>
         <div className="bg-color d-flex justify-content-between align-items-center sticky-top">
@@ -105,13 +105,13 @@ export default class IndividualMessage extends React.Component {
           <i className="fas fa-bars fas-size p-2"></i>
         </div>
 
-        <div className="container">
+        <div className="container fix-overlap">
           {this.state.messages.map(cur => cur.idFrom === currentUserId
             ? <RightMessage key={cur.createdAt} user={cur} />
             : <LeftMessage key={cur.createdAt} user={cur} />)}
         </div>
 
-        <div className="sitcky-bottom gray">
+        <div className="fixed-bottom gray">
           <div className="container d-flex align-items-center">
             <textarea
               name="newMessage"

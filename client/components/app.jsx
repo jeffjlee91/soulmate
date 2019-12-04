@@ -14,7 +14,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'like-page',
+        name: 'main',
         params: {}
       }
     };
@@ -45,7 +45,9 @@ export default class App extends React.Component {
         );
       case 'individual-message':
         return (
-          <IndividualMessage setView={this.setView}/>
+          <IndividualMessage
+            setView={this.setView}
+            userId={this.state.view.params}/>
         );
       case 'profile':
         return (
@@ -62,12 +64,14 @@ export default class App extends React.Component {
         return (
           <MessageHistory
             setView={this.setView}
+            currentUser={this.state.view.params}
             currentPage="message-history"/>
         );
       case 'like-page':
         return (
           <LikePage
             setView={this.setView}
+            currentUser={this.state.view.params}
             currentPage="like-page"/>
         );
       case 'filter':
