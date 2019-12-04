@@ -11,7 +11,7 @@ class DiscoverPage extends React.Component {
   }
 
   getUsers() {
-    const user = this.state.currentUser;
+    const user = this.props.currentUser.gender;
     const req = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -32,22 +32,19 @@ class DiscoverPage extends React.Component {
 
   render() {
     return (
-      <div className='bg-color'>
+      <div className='container bg-color'>
         <nav className="bg-color fixed-top navbar d-flex justify-content-between align-items-center">
           <i className="fas fa-sliders-h fas-size p-2"></i>
           <i className="fas fa-bars fas-size p-2"></i>
         </nav>
-        <div className='container cardlist'>
+        <div className='cardlist'>
           {this.state.users.map(user => {
             return (
               <DiscoverDetail key={user.userId} users={user}/>
             );
           })}
         </div>
-        <BottomMenu
-          currentPage={this.props.currentPage}
-          setView={this.props.setView}
-          currentUser={this.props.currentUser}/>
+        <BottomMenu />
       </div>
     );
   }
@@ -60,17 +57,6 @@ class DiscoverDetail extends React.Component {
       user: {}
     };
   }
-
-  // componentDidMount() {
-  //     const userId = this.props.user.userId;
-  //     fetch(``)
-  //         .then(res => res.json())
-  //         .then(user => {
-  //             this.setState({
-  //                 user: user
-  //             });
-  //         });
-  // }
 
   render() {
     return (
