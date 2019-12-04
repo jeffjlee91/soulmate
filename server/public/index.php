@@ -13,6 +13,7 @@ switch ($request['path']) {
   case '/api/discover-page':
   case '/api/individual-message':
   case '/api/likes':
+  case '/api/message-history':
     require_once "..${request['path']}.php";
   default:
     throw new ApiError("Cannot ${request['method']} ${request['path']}", 404);
