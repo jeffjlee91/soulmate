@@ -5,13 +5,13 @@ class DiscoverPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: { gender: 'Male' },
       users: []
     };
+    this.cardWasClicked = this.cardWasClicked.bind(this);
   }
 
   getUsers() {
-    const user = this.state.currentUser;
+    const user = this.props.currentUser;
     const req = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -26,28 +26,37 @@ class DiscoverPage extends React.Component {
       });
   }
 
+  cardWasClicked(userIdtoRemove) {
+    const newArray = [];
+    this.state.users.forEach(user => {
+      if (user.userId !== userIdtoRemove) {
+        newArray.push(user);
+      }
+    });
+    this.setState({
+      users: newArray
+    });
+  }
+
   componentDidMount() {
     this.getUsers();
   }
 
   render() {
     return (
-      <div className='bg-color'>
+      <div className='container bg-color'>
         <nav className="bg-color fixed-top navbar d-flex justify-content-between align-items-center">
           <i className="fas fa-sliders-h fas-size p-2"></i>
           <i className="fas fa-bars fas-size p-2"></i>
         </nav>
-        <div className='container cardlist'>
+        <div className='cardlist'>
           {this.state.users.map(user => {
             return (
-              <DiscoverDetail key={user.userId} users={user}/>
+              <DiscoverDetail key={user.userId} users={user} currentUser={this.props.currentUser} cardWasClicked={this.cardWasClicked}/>
             );
           })}
         </div>
-        <BottomMenu
-          currentPage={this.props.currentPage}
-          setView={this.props.setView}
-          currentUser={this.props.currentUser}/>
+        <BottomMenu />
       </div>
     );
   }
@@ -59,18 +68,41 @@ class DiscoverDetail extends React.Component {
     this.state = {
       user: {}
     };
+    this.likeClicked = this.likeClicked.bind(this);
+    this.dislikeClicked = this.dislikeClicked.bind(this);
   }
 
-  // componentDidMount() {
-  //     const userId = this.props.user.userId;
-  //     fetch(``)
-  //         .then(res => res.json())
-  //         .then(user => {
-  //             this.setState({
-  //                 user: user
-  //             });
-  //         });
-  // }
+  likeClicked() {
+    const likeData = {
+      idFrom: this.props.currentUser.userId,
+      idTo: this.props.users.userId,
+      isLike: true
+    };
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(likeData)
+    };
+    fetch('/api/likes', req)
+      .then(res => res.json());
+    this.props.cardWasClicked(this.props.users.userId);
+  }
+
+  dislikeClicked() {
+    const dislikeData = {
+      idFrom: this.props.currentUser.userId,
+      idTo: this.props.users.userId,
+      isLike: 0
+    };
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dislikeData)
+    };
+    fetch('/api/likes', req)
+      .then(res => res.json());
+    this.props.cardWasClicked(this.props.users.userId);
+  }
 
   render() {
     return (
@@ -80,8 +112,8 @@ class DiscoverDetail extends React.Component {
           <div className='card-body'>
             <h2 className=''>{this.props.users.firstName}{', '}{this.props.users.age}</h2>
             <div>
-              <i className="fas fa-heart fas-size3 likeHeart red"></i>
-              <i className="fas fa-heart-broken fas-size3 likeHeart"></i>
+              <i onClick={this.likeClicked} className="fas fa-heart fas-size3 likeHeart red"></i>
+              <i onClick={this.dislikeClicked} className="fas fa-heart-broken fas-size3 likeHeart"></i>
             </div>
           </div>
         </div>
