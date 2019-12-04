@@ -5,13 +5,13 @@ class DiscoverPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: { gender: 'Male' },
       users: []
     };
+    this.cardWasClicked = this.cardWasClicked.bind(this);
   }
 
   getUsers() {
-    const user = this.props.currentUser.gender;
+    const user = this.props.currentUser;
     const req = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -24,6 +24,18 @@ class DiscoverPage extends React.Component {
           users: users
         });
       });
+  }
+
+  cardWasClicked(userIdtoRemove) {
+    const newArray = [];
+    this.state.users.forEach(user => {
+      if (user.userId !== userIdtoRemove) {
+        newArray.push(user);
+      }
+    });
+    this.setState({
+      users: newArray
+    });
   }
 
   componentDidMount() {
@@ -40,7 +52,7 @@ class DiscoverPage extends React.Component {
         <div className='cardlist'>
           {this.state.users.map(user => {
             return (
-              <DiscoverDetail key={user.userId} users={user}/>
+              <DiscoverDetail key={user.userId} users={user} currentUser={this.props.currentUser} cardWasClicked={this.cardWasClicked}/>
             );
           })}
         </div>
@@ -56,6 +68,40 @@ class DiscoverDetail extends React.Component {
     this.state = {
       user: {}
     };
+    this.likeClicked = this.likeClicked.bind(this);
+    this.dislikeClicked = this.dislikeClicked.bind(this);
+  }
+
+  likeClicked() {
+    const likeData = {
+      idFrom: this.props.currentUser.userId,
+      idTo: this.props.users.userId,
+      isLike: true
+    };
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(likeData)
+    };
+    fetch('/api/likes', req)
+      .then(res => res.json());
+    this.props.cardWasClicked(this.props.users.userId);
+  }
+
+  dislikeClicked() {
+    const dislikeData = {
+      idFrom: this.props.currentUser.userId,
+      idTo: this.props.users.userId,
+      isLike: 0
+    };
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dislikeData)
+    };
+    fetch('/api/likes', req)
+      .then(res => res.json());
+    this.props.cardWasClicked(this.props.users.userId);
   }
 
   render() {
@@ -66,8 +112,8 @@ class DiscoverDetail extends React.Component {
           <div className='card-body'>
             <h2 className=''>{this.props.users.firstName}{', '}{this.props.users.age}</h2>
             <div>
-              <i className="fas fa-heart fas-size3 likeHeart red"></i>
-              <i className="fas fa-heart-broken fas-size3 likeHeart"></i>
+              <i onClick={this.likeClicked} className="fas fa-heart fas-size3 likeHeart red"></i>
+              <i onClick={this.dislikeClicked} className="fas fa-heart-broken fas-size3 likeHeart"></i>
             </div>
           </div>
         </div>
