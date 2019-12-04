@@ -4,7 +4,7 @@ if($request['method'] === 'GET') {
   $idFrom = $request['query']['idFrom'];
 
   $sqlMatchOne =
-  "SELECT u.firstName, u.images
+  "SELECT u.firstName, u.images, u.userId
    FROM likes AS l
    JOIN users AS u
    ON l.idTo = u.userId
@@ -13,7 +13,7 @@ if($request['method'] === 'GET') {
   $resultOne = mysqli_fetch_all($resultObjOne, MYSQLI_ASSOC);
 
   $sqlMatchTwo =
-  "SELECT u.firstName, u.images
+  "SELECT u.firstName, u.images, u.userId
    FROM likes AS l
    JOIN users AS u
    ON l.idFrom = u.userId

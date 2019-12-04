@@ -6,6 +6,18 @@ body {
   object-fit: contain;
 }
 
+.chat-photo {
+  object-fit: cover;
+  height: 63.75px;
+  width: 63.75px;
+}
+
+.likes-photo {
+  object-fit: cover;
+  width: 157.5px;
+  height: 157.5px;
+}
+
 .message-photo {
   object-fit: cover;
   height: 50px;
@@ -224,10 +236,4 @@ body {
   width: 100%;
   height: 300px;
   object-fit: cover;
-}
-
-.likes-photo {
-  object-fit: cover;
-  width: 172.5px;
-  height: 172.5px;
 }
