@@ -1,12 +1,14 @@
 import React from 'react';
 import BottomMenu from './bottom-menu';
+import Menu from './menu';
 
 class IndividualMatch extends React.Component {
   render() {
     return (
       <div onClick={() => this.props.setView('individual-message', {
         idFrom: this.props.currentUserId,
-        idTo: this.props.user.userId
+        idTo: this.props.user.userId,
+        currentUser: this.props.currentUser
       })}>
         <div className="row mb-3">
           <div className="col-3">
@@ -26,8 +28,15 @@ export default class MessageHistory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      match: []
+      match: [],
+      slidIn: ''
     };
+  }
+
+  menuSlidOut() {
+    this.setState({
+      slidIn: ''
+    });
   }
 
   componentDidMount() {
@@ -45,24 +54,28 @@ export default class MessageHistory extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="bg-color d-flex justify-content-between align-items-center sticky-top">
-          <i className="fas fa-angle-left fas-size p-2"></i>
-          <i className=" fas fa-bars fas-size p-2"></i>
+      <div className="over-flow-hidden">
+        <Menu
+          slidIn={this.state.slidIn}
+          slidOut={this.menuSlidOut.bind(this)} />
+        <div className="bg-color d-flex justify-content-end sticky-top">
+          <i className=" fas fa-bars fas-size p-2"
+            onClick={() => this.setState({ slidIn: 'menu-slidin' })}></i>
         </div>
 
-        <div className=" container fix-overlap">
+        <div className="container fix-overlap">
           {this.state.match.map((cur, index) => <IndividualMatch
             key={cur.userId}
             user={cur}
             currentUserId={this.props.currentUser.userId}
-            setView={this.props.setView}/>)}
+            setView={this.props.setView}
+            currentUser={this.props.currentUser}/>)}
         </div>
 
         <BottomMenu
           currentPage={this.props.currentPage}
           currentUser={this.props.currentUser}
-          setView={this.props.setView}/>
+          setView={this.props.setView} />
       </div>
     );
   }

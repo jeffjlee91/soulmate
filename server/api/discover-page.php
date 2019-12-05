@@ -9,7 +9,6 @@ if($request['method'] === 'POST' && $request['body']['gender']==='Male') {
     $result = $link->query($getAllFemaleUsersql);
     $users = $result->fetch_all(MYSQLI_ASSOC);
     
-
     $currentUserId = $request['body']['userId'];
 
     $sqlGetUsers = 
@@ -68,6 +67,4 @@ if($request['method'] === 'POST' && $request['body']['gender']==='Male') {
 
    $response['body'] = $result;
    send($response);
-
-    }
-
+ }
