@@ -8,13 +8,14 @@ import DiscoverPage from './discover-page';
 import LikePage from './like-page';
 import Filter from './filter';
 import MessageHistory from './message-history';
+import UserUpload from './user-upload';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'main',
+        name: 'user-upload',
         params: {}
       }
     };
@@ -77,6 +78,10 @@ export default class App extends React.Component {
       case 'filter':
         return (
           <Filter />
+        );
+      case 'user-upload':
+        return (
+          <UserUpload />
         );
       default:
         return <h1>Misssssss Seplling</h1>;
