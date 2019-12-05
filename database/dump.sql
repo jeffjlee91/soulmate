@@ -36,6 +36,7 @@ CREATE TABLE `likes` (
 
 LOCK TABLES `likes` WRITE;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
+INSERT INTO `likes` VALUES (2,4,1,'2019-12-03 22:58:05'),(2,5,1,'2019-12-03 22:59:49'),(2,12,1,'2019-12-03 23:00:14'),(9,5,1,'2019-12-03 23:01:32'),(8,5,0,'2019-12-03 23:03:40'),(4,2,1,'2019-12-04 00:25:26'),(11,2,1,'2019-12-04 00:51:52'),(5,2,1,'2019-12-04 01:13:20'),(9,3,1,'2019-12-04 02:27:23'),(3,9,1,'2019-12-04 02:28:04'),(3,2,1,'2019-12-04 04:01:57'),(2,3,0,'2019-12-04 04:02:25'),(10,1,1,'2019-12-04 04:20:34'),(3,1,1,'2019-12-04 04:20:56'),(4,1,1,'2019-12-04 04:21:01'),(5,1,1,'2019-12-04 04:21:07'),(11,1,1,'2019-12-04 04:21:13'),(12,1,1,'2019-12-04 04:21:24');
 /*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -47,11 +48,13 @@ DROP TABLE IF EXISTS `messages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `messages` (
+  `messageId` int(11) NOT NULL AUTO_INCREMENT,
   `idFrom` int(11) NOT NULL,
   `idTo` int(11) NOT NULL,
   `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`messageId`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,6 +63,7 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
+INSERT INTO `messages` VALUES (1,2,4,'hellolo, sarah~~~','2019-12-02 05:16:38'),(2,4,2,'Hi, Jeff, what are you doing? Looks sneaky~~','2019-12-02 05:17:37'),(3,2,4,'Oh, I am just.....say hi to you, I miss you~~~','2019-12-02 05:18:07'),(4,4,2,'Oh, really? I missed you too, do you wanna go beach this weekend?','2019-12-02 05:22:39'),(5,2,4,'Ahaha, of course~!','2019-12-02 05:23:04'),(6,2,4,'You are cute!','2019-12-02 19:05:14'),(7,4,2,'Thank you, I think you are cute too.','2019-12-02 19:05:45'),(8,2,4,'Where do you live?','2019-12-02 19:06:11'),(9,4,2,'Inside your dream','2019-12-02 19:06:33'),(10,2,4,'Please dont wake me up.','2019-12-02 19:06:49'),(11,2,4,'I am hungry','2019-12-02 20:31:13'),(12,2,4,'Do you want to eat?','2019-12-02 20:31:53'),(13,2,4,'hun?','2019-12-02 20:34:45'),(14,2,4,'hun?','2019-12-02 20:35:19'),(15,2,4,'I will talk you later','2019-12-02 21:07:02'),(16,2,4,'another try','2019-12-02 21:07:37'),(17,2,4,'not working','2019-12-02 21:08:00'),(18,2,4,'Hope it is working!!!','2019-12-02 21:17:16'),(19,2,4,'tricky way','2019-12-02 21:30:04'),(20,2,4,'another try','2019-12-02 22:53:22'),(21,2,4,'?','2019-12-02 22:54:15'),(22,2,4,'....','2019-12-02 22:55:52'),(23,2,4,'hi Vandana','2019-12-02 23:50:21'),(24,4,2,'I am just go to shower, who is Vandana?','2019-12-03 00:10:53'),(25,4,2,'......','2019-12-03 00:11:09'),(26,9,3,'Hello, Irene~~~','2019-12-04 02:28:39'),(27,3,9,'Hello, Michael~~~','2019-12-04 02:29:14'),(28,2,4,'Hi, Jake','2019-12-04 23:08:51');
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,4 +115,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-02  4:57:15
+-- Dump completed on 2019-12-04 23:49:50
