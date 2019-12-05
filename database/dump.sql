@@ -68,6 +68,33 @@ INSERT INTO `messages` VALUES (1,2,4,'hellolo, sarah~~~','2019-12-02 05:16:38'),
 UNLOCK TABLES;
 
 --
+-- Table structure for table `moments`
+--
+
+DROP TABLE IF EXISTS `moments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `moments` (
+  `momentId` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `likes` int(11) NOT NULL,
+  `picture` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`momentId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `moments`
+--
+
+LOCK TABLES `moments` WRITE;
+/*!40000 ALTER TABLE `moments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `moments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -115,4 +142,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-04 23:49:50
+-- Dump completed on 2019-12-05 20:50:56
