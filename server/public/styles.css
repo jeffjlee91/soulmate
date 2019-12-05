@@ -183,6 +183,10 @@ body {
 .red {
   color: red;
 }
+.grey{
+  color: gray;
+}
+}
 
 .white {
   color: white;
@@ -264,4 +268,27 @@ body {
   overflow: hidden;
   position: relative;
   height: 100vh;
+}
+
+.micro-photo {
+  object-fit: cover;
+  height: 40.75px;
+  width: 40.75px;
+  border-radius: 50%;
+}
+
+.micro-font {
+  color:black;
+  font-size: .70rem;
+  font-weight: bold;
+}
+
+.micro-font2 {
+  color:black;
+  font-size: .66rem;
+  text-align: left;
+}
+
+.photo-stats{
+ width:100%;
 }
