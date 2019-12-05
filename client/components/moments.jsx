@@ -1,7 +1,47 @@
 import React from 'react';
 import BottomMenu from './bottom-menu';
 
+class IndividualMoment extends React.Component {
+  render() {
+    return (
+      <div className="mb-5">
+        <div className="d-flex align-items-center container">
+          <img src={this.props.moment.images} className="img-fluid micro-photo" />
+          <div className="micro-font ml-3">{this.props.moment.firstName}</div>
+        </div>
+        <div className="micro-font2 mt-2 mb-2 container">
+          {this.props.moment.message}
+        </div>
+        <img src={this.props.moment.picture} className="img-fluid photo-stats" />
+        <div className="d-flex align-items-center container mt-2">
+          <i className="fas fa-heart fas-size3 grey"></i>
+          <h3 className="ml-3">{this.props.moment.likes}</h3>
+        </div>
+      </div>
+    );
+  }
+}
+
 export default class Moments extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      moments: []
+    };
+  }
+
+  componentDidMount() {
+    this.getMomentsData();
+  }
+
+  getMomentsData() {
+    const gender = 'Female';
+    fetch(`/api/moments?gender=${gender}`)
+      .then(res => res.json())
+      .then(moments => {
+        this.setState({ moments });
+      }).catch(err => alert('getMomentsData error', err));
+  }
 
   render() {
     return (
@@ -10,75 +50,9 @@ export default class Moments extends React.Component {
           <i className="fas fa-angle-left fas-size p-2"></i>
           <i className=" fas fa-bars fas-size p-2"></i>
         </div>
-
+        {this.state.moments.map(cur => <IndividualMoment key={cur.momentId} moment={cur}/>)}
         <div>
-          <div className="mb-3">
-            <div className="d-flex align-items-center container">
-              <img src="images/Irene.jpg" className="img-fluid micro-photo" />
-              <div className="micro-font ml-3">Irene123567890</div>
-            </div>
-            <div className="micro-font2 mt-2 mb-2 container">
-              This is my super cute cat. Please take a look. This is my super cute cat.
-              This is my super cute cat. Please take a look. He is a very serious guy.
-              This is my super cute cat.
-            </div>
-            <img src="images/cat.png" className="img-fluid photo-stats" />
-            <div className="d-flex align-items-center container mt-2">
-              <i className="fas fa-heart fas-size3 grey"></i>
-              <h3 className="ml-3">0</h3>
-            </div>
-          </div>
 
-          <div className="mb-3">
-            <div className="d-flex align-items-center container">
-              <img src="images/Irene.jpg" className="img-fluid micro-photo" />
-              <div className="micro-font ml-3">Irene123567890</div>
-            </div>
-            <div className="micro-font2 mt-2 mb-2 container">
-              This is my super cute cat. Please take a look. This is my super cute cat.
-              This is my super cute cat. Please take a look. He is a very serious guy.
-              This is my super cute cat.
-            </div>
-            <img src="images/cat.png" className="img-fluid photo-stats" />
-            <div className="d-flex align-items-center container mt-2">
-              <i className="fas fa-heart fas-size3 grey"></i>
-              <h3 className="ml-3">0</h3>
-            </div>
-          </div>
-
-          <div className="mb-3">
-            <div className="d-flex align-items-center container">
-              <img src="images/Irene.jpg" className="img-fluid micro-photo" />
-              <div className="micro-font ml-3">Irene123567890</div>
-            </div>
-            <div className="micro-font2 mt-2 mb-2 container">
-              This is my super cute cat. Please take a look. This is my super cute cat.
-              This is my super cute cat. Please take a look. He is a very serious guy.
-              This is my super cute cat.
-            </div>
-            <img src="images/cat.png" className="img-fluid photo-stats" />
-            <div className="d-flex align-items-center container mt-2">
-              <i className="fas fa-heart fas-size3 grey"></i>
-              <h3 className="ml-3">0</h3>
-            </div>
-          </div>
-
-          <div className="mb-3">
-            <div className="d-flex align-items-center container">
-              <img src="images/Irene.jpg" className="img-fluid micro-photo" />
-              <div className="micro-font ml-3">Irene123567890</div>
-            </div>
-            <div className="micro-font2 mt-2 mb-2 container">
-              This is my super cute cat. Please take a look. This is my super cute cat.
-              This is my super cute cat. Please take a look. He is a very serious guy.
-              This is my super cute cat.
-            </div>
-            <img src="images/cat.png" className="img-fluid photo-stats" />
-            <div className="d-flex align-items-center container mt-2">
-              <i className="fas fa-heart fas-size3 grey"></i>
-              <h3 className="ml-3">0</h3>
-            </div>
-          </div>
         </div>
 
         <BottomMenu

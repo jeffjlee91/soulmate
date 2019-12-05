@@ -82,7 +82,7 @@ CREATE TABLE `moments` (
   `picture` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`momentId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,6 +91,7 @@ CREATE TABLE `moments` (
 
 LOCK TABLES `moments` WRITE;
 /*!40000 ALTER TABLE `moments` DISABLE KEYS */;
+INSERT INTO `moments` VALUES (1,1,'My cat is cute~~~',0,'images/cat.png','2019-12-05 21:43:48'),(2,4,'You want it?',0,'images/food.JPG','2019-12-05 21:48:17');
 /*!40000 ALTER TABLE `moments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,4 +143,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-05 21:39:51
+-- Dump completed on 2019-12-05 21:59:30

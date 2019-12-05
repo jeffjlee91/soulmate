@@ -16,7 +16,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'moments',
+        name: 'main',
         params: {}
       }
     };
@@ -68,6 +68,13 @@ export default class App extends React.Component {
             setView={this.setView}
             currentUser={this.state.view.params}
             currentPage="message-history"/>
+        );
+      case 'moments':
+        return (
+          <Moments
+            setView={this.setView}
+            currentUser={this.state.view.params}
+            currentPage="moments" />
         );
       case 'like-page':
         return (
