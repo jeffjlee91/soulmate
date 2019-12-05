@@ -12,6 +12,13 @@ body {
   width: 63.75px;
 }
 
+.menu-photo {
+  object-fit: cover;
+  height: 70px;
+  width: 70px;
+  border-radius: 100%;
+}
+
 .likes-photo {
   object-fit: cover;
   width: 157.5px;
@@ -240,6 +247,27 @@ body {
   width: 100%;
   height: 300px;
   object-fit: cover;
+}
+
+.menu-slidout {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: 1021;
+  background-color: #EAEAEA;
+  transform: translateX(100%);
+  transition: transform .5s;
+}
+
+.menu-slidin {
+  transform: translateX(0%);
+  transition: transform .5s;
+}
+
+.over-flow-hidden {
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
 }
 
 .micro-photo {

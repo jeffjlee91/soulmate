@@ -1,34 +1,20 @@
 import React from 'react';
-import BottomMenu from './bottom-menu';
 
 export default class Menu extends React.Component {
   render() {
     return (
-      <div className="container bg-color">
-        <div className="row">
-          <i className="col-10"></i>
-          <i className="fas fa-times fas-size p-2 col-2"></i>
+      <div className={`bg-color menu-slidout ${this.props.slidIn}`}>
+        <div className="d-flex justify-content-end">
+          <i className="fas fa-times fas-size p-2"
+            onClick={() => this.props.slidOut()}></i>
         </div>
-        <div className="d-flex justify-content-center row align-content-center full-view-height">
-          <h1 className="title col-12 mb-3">UserName</h1>
-          <div className="container">
-            <img src='/images/Alex.png' alt="some guy face" className=" user-photo rounded-circle" />
-          </div>
-          <div className="mt-3 slogan">Soulmate is an overused term,</div>
-          <div className="mb-5 slogan">but a true soul connection is very rare, and very real.</div>
-          <div>
-            <div className="text-center h4">
-            Change Password
-            </div>
-            <div className="text-center h4">
-            View Profile
-            </div>
-            <div className="text-center h4">
-            Logout
-            </div>
-          </div>
+        <div className="container">
+          <h1>Hello, Jeff</h1>
+          <img src="images/Jeff.jpg" className="menu-photo" />
+          <h3>Change password</h3>
+          <h3>Post</h3>
+          <h3>Logout</h3>
         </div>
-        <BottomMenu />
       </div>
     );
   }
