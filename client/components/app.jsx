@@ -10,6 +10,7 @@ import Filter from './filter';
 import MessageHistory from './message-history';
 import Moments from './moments';
 
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -85,6 +86,14 @@ export default class App extends React.Component {
       case 'filter':
         return (
           <Filter />
+        );
+      case 'moments':
+        return (
+          <Moments />
+        );
+      case 'user-upload-photo':
+        return (
+          <UserUploadPhoto />
         );
       default:
         return <h1>Misssssss Seplling</h1>;
