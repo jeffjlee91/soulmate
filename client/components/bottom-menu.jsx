@@ -3,9 +3,12 @@ import React from 'react';
 class BottomMenu extends React.Component {
   render() {
     const currentPage = this.props.currentPage;
-    let likesOpac, discoverOpac, chatsOpac;
-    likesOpac = discoverOpac = chatsOpac = 'opac50';
+    let likesOpac, discoverOpac, chatsOpac, momentOpac;
+    momentOpac = likesOpac = discoverOpac = chatsOpac = 'opac50';
     switch (currentPage) {
+      case 'moments':
+        momentOpac = 'opac100';
+        break;
       case 'message-history':
         chatsOpac = 'opac100';
         break;
@@ -18,9 +21,11 @@ class BottomMenu extends React.Component {
     }
     return (
       <div className="fixed-bottom gray d-flex p-1 pt-2">
-        <div className={`text-center width-25 ${'opac50'}`}>
-          <i className="fas fa-map-marker-alt fa-lg lightgray "></i>
-          <div className='lightgray '>Maps</div>
+        <div
+          className={`text-center width-25 ${momentOpac}`}
+          onClick={() => this.props.setView('moments', this.props.currentUser)}>
+          <i className="fas fa-camera-retro fa-lg lightgray "></i>
+          <div className='lightgray '>Moments</div>
         </div>
 
         <div

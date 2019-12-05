@@ -40,7 +40,7 @@ if($request['method'] === 'GET') {
     $gender = 'Male';
   }
   $sqlGetMoments =
-  "SELECT m.userId, m.message, m.likes, m.picture, m.createdAt, u.images, u.firstName
+  "SELECT m.momentId, m.userId, m.message, m.likes, m.picture, m.createdAt, u.images, u.firstName
    FROM moments AS m
    JOIN users AS u
    ON m.userId = u.userId
