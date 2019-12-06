@@ -4,7 +4,8 @@ export default class DetailedProfileView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {}
+      user: {},
+      checkValidation: ''
     };
   }
 
@@ -13,11 +14,33 @@ export default class DetailedProfileView extends React.Component {
   }
 
   getUserData() {
-    const currentUserId = this.props.profileId;
-    fetch(`/api/profile?userId=${currentUserId}`)
+    const currentProfile = this.props.profileId;
+    fetch(`/api/profile?userId=${currentProfile}`)
       .then(res => res.json())
       .then(user => this.setState({ user }))
       .catch(err => alert('getUserData error', err));
+  }
+
+  likesClickHandler(like, id) {
+    const isLike = like === 'like';
+    const idFrom = this.props.currentUser.userId;
+    const idTo = id;
+    const match = {
+      isLike,
+      idFrom,
+      idTo
+    };
+
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'applicatin/json' },
+      body: JSON.stringify(match)
+    };
+    fetch('/api/likes', req)
+      .then(res => res.json())
+      .then(result => {
+        this.props.setView('moments', this.props.currentUser);
+      }).catch(err => alert('likesClickHandler error', err));
   }
 
   render() {
@@ -71,8 +94,10 @@ export default class DetailedProfileView extends React.Component {
             <h5 className="text-secondary col-12">{this.state.user.iAppreciate}</h5>
           </div>
           <div className="d-flex justify-content-around">
-            <div className="fas fa-heart fas-size3 likeHeart red"></div>
-            <div className="fas fa-heart-broken fas-size3 likeHeart"></div>
+            <div className="fas fa-heart fas-size3 likeHeart red"
+              onClick={() => this.likesClickHandler('like', this.props.profileId)}></div>
+            <div className="fas fa-heart-broken fas-size3 likeHeart"
+              onClick={() => this.likesClickHandler('dislike', this.props.profileId)}></div>
           </div>
         </div>
       </div>
