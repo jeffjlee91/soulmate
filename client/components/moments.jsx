@@ -51,7 +51,14 @@ export default class Moments extends React.Component {
           <i
             className="fas fa-camera fas-size p-2"
             onClick={() => this.props.setView('post', this.props.currentUser)}></i>
-          <i className="fas fa-bars fas-size p-2"></i>
+          <i className="fas fa-bars fas-size p-2"
+            onClick={() =>
+              this.props.setView(
+                'menu',
+                this.props.currentUser,
+                this.props.currentPage)
+            }
+          ></i>
         </div>
 
         <div className="fix-overlap">

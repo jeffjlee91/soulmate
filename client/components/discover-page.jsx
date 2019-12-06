@@ -1,5 +1,6 @@
 import React from 'react';
 import BottomMenu from './bottom-menu';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class DiscoverPage extends React.Component {
   constructor(props) {
@@ -44,22 +45,45 @@ class DiscoverPage extends React.Component {
 
   render() {
     return (
-      <div className='container bg-color'>
-        <nav className="bg-color fixed-top navbar d-flex justify-content-between align-items-center">
+      <div>
+        <div className="bg-color sticky-top d-flex justify-content-between align-items-center">
           <i className="fas fa-sliders-h fas-size p-2"></i>
-          <i className="fas fa-bars fas-size p-2"></i>
-        </nav>
-        <div className='cardlist'>
-          {this.state.users.map(user => {
-            return (
-              <DiscoverDetail key={user.userId} users={user} currentUser={this.props.currentUser} cardWasClicked={this.cardWasClicked}/>
-            );
-          })}
+          <i className="fas fa-bars fas-size p-2"
+            onClick={() =>
+              this.props.setView(
+                'menu',
+                this.props.currentUser,
+                this.props.currentPage
+              )}
+          ></i>
         </div>
+
+        <div className='container fix-overlap'>
+          <TransitionGroup>
+            {this.state.users.map(user => {
+              return (
+                <CSSTransition
+                  classNames="fade"
+                  timeout={500}
+                  key={user.userId}
+                >
+                  <DiscoverDetail
+                    key={user.userId}
+                    users={user}
+                    currentUser={this.props.currentUser}
+                    cardWasClicked={this.cardWasClicked}
+                  />
+                </CSSTransition>
+              );
+            })}
+          </TransitionGroup>
+        </div>
+
         <BottomMenu
           currentPage={this.props.currentPage}
           currentUser={this.props.currentUser}
-          setView={this.props.setView} />
+          setView={this.props.setView}
+        />
       </div>
     );
   }

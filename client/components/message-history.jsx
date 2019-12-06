@@ -1,6 +1,5 @@
 import React from 'react';
 import BottomMenu from './bottom-menu';
-import Menu from './menu';
 
 class IndividualMatch extends React.Component {
   render() {
@@ -28,15 +27,8 @@ export default class MessageHistory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      match: [],
-      slidIn: ''
+      match: []
     };
-  }
-
-  menuSlidOut() {
-    this.setState({
-      slidIn: ''
-    });
   }
 
   componentDidMount() {
@@ -54,13 +46,16 @@ export default class MessageHistory extends React.Component {
 
   render() {
     return (
-      <div className="over-flow-hidden">
-        <Menu
-          slidIn={this.state.slidIn}
-          slidOut={this.menuSlidOut.bind(this)} />
+      <div>
         <div className="bg-color d-flex justify-content-end sticky-top">
           <i className=" fas fa-bars fas-size p-2"
-            onClick={() => this.setState({ slidIn: 'menu-slidin' })}></i>
+            onClick={() =>
+              this.props.setView(
+                'menu',
+                this.props.currentUser,
+                this.props.currentPage)
+            }
+          ></i>
         </div>
 
         <div className="container fix-overlap">
