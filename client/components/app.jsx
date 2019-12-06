@@ -16,17 +16,19 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'main',
-        params: {}
+        name: 'sign-in',
+        params: {},
+        info: {}
       }
     };
     this.setView = this.setView.bind(this);
   }
 
-  setView(name, params) {
+  setView(name, params, info) {
     const view = {
       name,
-      params
+      params,
+      info
     };
     this.setState({ view });
   }
@@ -51,9 +53,12 @@ export default class App extends React.Component {
             setView={this.setView}
             userId={this.state.view.params}/>
         );
-      case 'profile':
+      case 'detailed-profile':
         return (
-          <DetailedProfileView setView={this.setView}/>
+          <DetailedProfileView
+            setView={this.setView}
+            currentUser={this.state.view.params}
+            profileId={this.state.view.info}/>
         );
       case 'discover-page':
         return (

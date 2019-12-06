@@ -1,54 +1,78 @@
 import React from 'react';
 
 export default class DetailedProfileView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {}
+    };
+  }
+
+  componentDidMount() {
+    this.getUserData();
+  }
+
+  getUserData() {
+    const currentUserId = this.props.profileId;
+    fetch(`/api/profile?userId=${currentUserId}`)
+      .then(res => res.json())
+      .then(user => this.setState({ user }))
+      .catch(err => alert('getUserData error', err));
+  }
+
   render() {
     return (
       <div>
         <div className="d-flex justify-content-between align-items-center sticky-top bg-color">
-          <i className="fas fa-angle-left fas-size p-2"></i>
+          <i className="fas fa-angle-left fas-size p-2"
+            onClick={() => this.props.setView('moments', this.props.currentUser)}></i>
           <i className="fas fa-bars fas-size p-2"></i>
         </div>
-        <div className="container bg-color">
+        <div className="container bg-color mb-2">
           <div className="row">
-            <img src='/images/Alex.png' alt="some guy face" className="img-fluid photo-size rounded-top" />
+            <img src={this.state.user.images} alt="some guy face" className="img-fluid photo-size rounded-top" />
           </div>
           <div className="row bg-secondary">
             <div className="row col-12 text-light h3">
-              <div className="col-12">Meet Alex</div>
+              <div className="col-12">Meet {this.state.user.firstName}</div>
             </div>
             <div className="row col-12 text-light h5 rounded-bottom">
-              <div className="col-4 fas fa-birthday-cake"> 25</div>
-              <div className="col-4 fas fa-ruler-vertical"> 5&apos;10</div>
-              <div className="col-4 fas fa-male"> Male</div>
+              <div className="col-4 fas fa-birthday-cake">  {this.state.user.age}</div>
+              <div className="col-4 fas fa-ruler-vertical">  {this.state.user.height}</div>
+              <div className="col-4 fas fa-male">  {this.state.user.gender}</div>
             </div>
           </div>
           <div className="row">
             <h4 className='col-12'>Job Title</h4>
-            <h5 className="text-secondary col-12">Actor</h5>
+            <h5 className="text-secondary col-12">{this.state.user.jobTitle}</h5>
           </div>
           <div className="row">
             <h4 className='col-12'>Location</h4>
-            <h5 className="text-secondary col-12">Irvine, CA</h5>
+            <h5 className="text-secondary col-12">{this.state.user.location}</h5>
           </div>
           <div className="row">
             <h4 className='col-12'>Religion</h4>
-            <h5 className="text-secondary col-12">Agnostic</h5>
+            <h5 className="text-secondary col-12">{this.state.user.religion}</h5>
           </div>
           <div className="row">
             <h4 className='col-12'>Ethnicity</h4>
-            <h5 className="text-secondary col-12">Caucasian</h5>
+            <h5 className="text-secondary col-12">{this.state.user.ethnicity}</h5>
           </div>
           <div className="row">
             <h4 className='col-12'>I am....</h4>
-            <h5 className="text-secondary col-12">A movie fanatic and a hardcore star wars diehard fan</h5>
+            <h5 className="text-secondary col-12">{this.state.user.iAm}</h5>
           </div>
           <div className="row">
             <h4 className='col-12'>I like...</h4>
-            <h5 className="text-secondary col-12">Eating pizza on the roof and watchin the stars from my couch </h5>
+            <h5 className="text-secondary col-12">{this.state.user.iLike}</h5>
           </div>
           <div className="row">
             <h4 className='col-12'>I appreciate...</h4>
-            <h5 className="text-secondary col-12">Long walks on the beach and eating peanut butter. </h5>
+            <h5 className="text-secondary col-12">{this.state.user.iAppreciate}</h5>
+          </div>
+          <div className="d-flex justify-content-around">
+            <div className="fas fa-heart fas-size3 likeHeart red"></div>
+            <div className="fas fa-heart-broken fas-size3 likeHeart"></div>
           </div>
         </div>
       </div>

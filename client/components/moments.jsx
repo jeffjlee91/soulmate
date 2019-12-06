@@ -5,7 +5,8 @@ class IndividualMoment extends React.Component {
   render() {
     return (
       <div className="mb-5">
-        <div className="d-flex align-items-center container">
+        <div className="d-flex align-items-center container"
+          onClick={() => this.props.setView('detailed-profile', this.props.currentUser, this.props.moment.userId)}>
           <img src={this.props.moment.images} className="img-fluid micro-photo" />
           <div className="micro-font ml-3">{this.props.moment.firstName}</div>
         </div>
@@ -54,7 +55,13 @@ export default class Moments extends React.Component {
         </div>
 
         <div className="fix-overlap">
-          {this.state.moments.map(cur => <IndividualMoment key={cur.momentId} moment={cur} />)}
+          {this.state.moments.map(cur => {
+            return <IndividualMoment
+              key={cur.momentId}
+              moment={cur}
+              currentUser={this.props.currentUser}
+              setView={this.props.setView}/>;
+          })}
         </div>
 
         <BottomMenu
