@@ -5,26 +5,54 @@ class Filter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ageValue: '',
-      city: '',
-      state: '',
-      location: '',
-      ethinicity: '',
-      religion: '',
-      ageMin: 18,
-      ageMax: 40,
-      heightMinFeet: 4,
-      heightMinInch: 0,
-      heightMaxFeet: 7,
-      heightMaxInch: 11
+
+      city: null,
+      state: null,
+      ethnicity: null,
+      religion: null,
+      ageMin: null,
+      ageMax: null,
+      heightMinFeet: null,
+      heightMinInch: null,
+      heightMaxFeet: null,
+      heightMaxInch: null
+
     };
+    this.backWasClicked = this.backWasClicked.bind(this);
+    this.saveWasClicked = this.saveWasClicked.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.updateAge = this.updateAge.bind(this);
+  }
+
+  backWasClicked() {
+    const filter = this.state;
+    this.props.setView('discover-page', this.props.currentUser, filter);
+  }
+
+  saveWasClicked() {
+    const filter = this.state;
+    this.props.setView('discover-page', this.props.currentUser, filter);
+  }
+
+  onChangeHandler(event) {
+    const key = event.target.name;
+    this.setState({
+      [key]: event.target.value
+    });
+  }
+
+  updateAge(age) {
+    this.setState({
+      ageMin: age[0],
+      ageMax: age[1]
+    });
   }
 
   render() {
     return (
       <div className='container bg-color'>
         <nav className="bg-color fixed-top navbar d-flex justify-content-between align-items-center">
-          <i className="fas fa-angle-left fas-size p-2"></i>
+          <i onClick={this.backWasClicked} className="fas fa-angle-left fas-size p-2"></i>
           <h3 className='paddingRight'>Filter</h3>
         </nav>
 
@@ -36,6 +64,7 @@ class Filter extends React.Component {
                 name="city"
                 placeholder="City"
                 minLength='1'
+                onChange = {this.onChangeHandler}
                 required />
               <div className="invalid-feedback">Cannot be empty!</div>
             </div>
@@ -46,33 +75,17 @@ class Filter extends React.Component {
                 placeholder="CA"
                 minLength='2'
                 maxLength='2'
+                onChange = {this.onChangeHandler}
                 required />
               <div className="invalid-feedback">Cannot be empty!</div>
             </div>
-          </div>
-          <div className="col-12 form-group">
-            <label htmlFor="religion">Location</label>
-            <select id="religion" className="custom-select input"
-              name="religion"
-              // value={this.state.newUser.religion}
-              // onChange={this.inputHandler}>
-            >
-              <option defaultValue>Choose...</option>
-              <option value="Christian">Christian</option>
-              <option value="Buddhist">Buddhist</option>
-              <option value="Catolic">Catolic</option>
-              <option value="Hindu">Hindu</option>
-              <option value="Muslim">Muslim</option>
-              <option value="None">None</option>
-            </select>
           </div>
           <div className="col-12 filterOptionMargin form-group">
             <label htmlFor="ethnicity">Ethnicity</label>
             <select id="ethinicity" className="custom-select input"
               name="ethnicity"
-              // value={this.state.newUser.ethnicity}
-              // onChange={this.inputHandler}>
-            >
+              onChange={this.onChangeHandler}>
+
               <option defaultValue>Choose...</option>
               <option value="Asian">Asian</option>
               <option value="Caucasian">Caucasian</option>
@@ -85,9 +98,8 @@ class Filter extends React.Component {
             <label htmlFor="religion">Religion</label>
             <select id="religion" className="custom-select input"
               name="religion"
-              // value={this.state.newUser.religion}
-              // onChange={this.inputHandler}>
-            >
+              onChange={this.onChangeHandler}>
+
               <option defaultValue>Choose...</option>
               <option value="Christian">Christian</option>
               <option value="Buddhist">Buddhist</option>
@@ -99,7 +111,7 @@ class Filter extends React.Component {
           </div>
           <div className="col-12 slidecontainer filterOptionMargin">
             <label htmlFor="age">Age</label>
-            <AgeSlider className='slider'/>
+            <AgeSlider updateAge={this.updateAge} className='slider'/>
           </div>
 
           <div className='filterLeftPadding filterBotMargin'>Height</div>
@@ -108,9 +120,8 @@ class Filter extends React.Component {
             <div className="col-4 filterOptionMargin form-group topMargin">
               <label htmlFor="Height"></label>
               <select className="custom-select input"
-                name="Height"
-                // value={this.state.minHeightFeet}
-                // onChange={this.inputHandler}>
+                name="heightMinFeet"
+                onChange = {this.onChangeHandler}
               >
                 <option defaultValue>Feet</option>
                 <option value='4'>4 ft</option>
@@ -122,9 +133,8 @@ class Filter extends React.Component {
             <div className="col-4 filterOptionMargin topMargin form-group">
               <label htmlFor="Height"></label>
               <select className="custom-select input"
-                name="Height"
-                // value={this.state.newUser.ethnicity}
-                // onChange={this.inputHandler}>
+                name="heightMinInch"
+                onChange = {this.onChangeHandler}
               >
                 <option defaultValue>Inch</option>
                 <option value="0">0 in</option>
@@ -147,9 +157,8 @@ class Filter extends React.Component {
             <div className="col-4 filterOptionMargin form-group">
               <label htmlFor="Height"></label>
               <select className="custom-select input"
-                name="Height"
-                // value={this.state.newUser.ethnicity}
-                // onChange={this.inputHandler}>
+                name="heightMaxFeet"
+                onChange = {this.onChangeHandler}
               >
                 <option defaultValue>Feet</option>
                 <option value='4'>4 ft</option>
@@ -161,9 +170,8 @@ class Filter extends React.Component {
             <div className="col-4 filterOptionMargin form-group">
               <label htmlFor="Height"></label>
               <select className="custom-select input"
-                name="Height"
-                // value={this.state.newUser.ethnicity}
-                // onChange={this.inputHandler}>
+                name="heightMaxInch"
+                onChange = {this.onChangeHandler}
               >
                 <option defaultValue>Inch</option>
                 <option value="0">0 in</option>
@@ -182,7 +190,7 @@ class Filter extends React.Component {
             </div>
           </div>
           <div className="col-12">
-            <button type="submit" className="btn btn-outline-secondary saveButton">Save</button>
+            <button onClick={this.saveWasClicked} type="submit" className="btn btn-outline-secondary saveButton">Save</button>
           </div>
         </div>
       </div>

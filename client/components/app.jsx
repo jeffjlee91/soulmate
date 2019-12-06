@@ -16,17 +16,18 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'main',
-        params: {}
-      }
+        name: 'sign-in',
+        params: {},
+        filter: {}
     };
     this.setView = this.setView.bind(this);
   }
 
-  setView(name, params) {
+  setView(name, params, filter) {
     const view = {
       name,
-      params
+      params,
+      filter
     };
     this.setState({ view });
   }
@@ -60,6 +61,7 @@ export default class App extends React.Component {
           <DiscoverPage
             setView={this.setView}
             currentUser={this.state.view.params}
+            filter={this.state.view.filter}
             currentPage="discover-page"/>
         );
       case 'message-history':
@@ -81,11 +83,14 @@ export default class App extends React.Component {
           <LikePage
             setView={this.setView}
             currentUser={this.state.view.params}
-            currentPage="like-page"/>
+            c/>
         );
       case 'filter':
         return (
-          <Filter />
+          <Filter
+            setView={this.setView}
+            currentUser={this.state.view.params}
+            currentPage="filter"/>
         );
       case 'post':
         return (
