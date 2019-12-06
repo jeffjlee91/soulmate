@@ -7,7 +7,7 @@ export default class NewUser extends React.Component {
       newUser: {
         email: '',
         password: '',
-        images: '',
+        images: 'images/imgplaceholder.png',
         firstName: '',
         lastName: '',
         gender: '',
