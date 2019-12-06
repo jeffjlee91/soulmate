@@ -13,8 +13,12 @@ class IndividualLike extends React.Component {
           <div className="mdate col-12 text-center">{data.split(' ').shift()}</div>
           <div className=" col-12 h2 text-center">{this.props.user.firstName}</div>
           <div className=" col-12 row">
-            <i className="fas fa-heart fas-size3 likeHeart red col-6"></i>
-            <i className="fas fa-heart-broken fas-size3 likeHeart col-6"></i>
+            <div className="fas fa-heart fas-size3 likeHeart red col-6"
+              onClick={() => this.props.likesClickHandler('like', this.props.user.userId)}
+              name='like'></div>
+            <div className="fas fa-heart-broken fas-size3 likeHeart col-6"
+              onClick={() => this.props.likesClickHandler('dislike', this.props.user.userId)}
+              name='dislike'></div>
           </div>
         </div>
       </div>
@@ -42,16 +46,45 @@ export default class Likepage extends React.Component {
       .catch(err => alert('getLikesData error', err));
   }
 
+  likesClickHandler(like, id) {
+    const isLike = like === 'like';
+    const idFrom = this.props.currentUser.userId;
+    const idTo = id;
+    const match = {
+      isLike,
+      idFrom,
+      idTo
+    };
+    const likes = this.state.likes.filter(cur => {
+      if (cur.userId !== idTo) return cur;
+    });
+
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'applicatin/json' },
+      body: JSON.stringify(match)
+    };
+    fetch('/api/likes', req)
+      .then(res => res.json())
+      .then(result => {
+        this.setState({ likes });
+      }).catch(err => alert('likesClickHandler error', err));
+  }
+
   render() {
     return (
       <div>
-        <div className="bg-color d-flex justify-content-between align-items-center sticky-top">
-          <i className="fas fa-angle-left fas-size p-2"></i>
+        <div className="bg-color d-flex justify-content-end align-items-center sticky-top">
           <i className=" fas fa-bars fas-size p-2"></i>
         </div>
 
         <div className="container fix-overlap">
-          {this.state.likes.map(cur => <IndividualLike user={cur} key={cur.createdAt} />)}
+          {this.state.likes.map(cur => {
+            return <IndividualLike
+              user={cur}
+              key={cur.userId}
+              likesClickHandler={this.likesClickHandler.bind(this)} />;
+          })}
         </div>
 
         <BottomMenu

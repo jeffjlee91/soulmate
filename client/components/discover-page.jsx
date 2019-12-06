@@ -143,7 +143,6 @@ class DiscoverPage extends React.Component {
   }
 
   render() {
-    if (this.state.users) {
       return (
         <div className='container bg-color'>
           <nav className="bg-color fixed-top navbar d-flex justify-content-between align-items-center">
@@ -157,23 +156,12 @@ class DiscoverPage extends React.Component {
               );
             })}
           </div>
-          <BottomMenu />
+          <BottomMenu
+            currentPage={this.props.currentPage}
+            currentUser={this.props.currentUser}
+            setView={this.props.setView} />
         </div>
       );
-    } else {
-      return (
-        <div className='container bg-color'>
-          <nav className="bg-color fixed-top navbar d-flex justify-content-between align-items-center">
-            <i onClick={this.filterWasClicked} className="fas fa-sliders-h fas-size p-2"></i>
-            <i onClick={this.profileWasClicked} className="fas fa-bars fas-size p-2"></i>
-          </nav>
-          <div>Please broaden your filter search for additional matches!
-          </div>
-          <BottomMenu />
-        </div>
-      );
-    }
-
   }
 }
 

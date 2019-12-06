@@ -8,7 +8,8 @@ import DiscoverPage from './discover-page';
 import LikePage from './like-page';
 import Filter from './filter';
 import MessageHistory from './message-history';
-import UserUpload from './user-upload';
+import Moments from './moments';
+import Post from './post';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -18,7 +19,6 @@ export default class App extends React.Component {
         name: 'sign-in',
         params: {},
         filter: {}
-      }
     };
     this.setView = this.setView.bind(this);
   }
@@ -71,6 +71,13 @@ export default class App extends React.Component {
             currentUser={this.state.view.params}
             currentPage="message-history"/>
         );
+      case 'moments':
+        return (
+          <Moments
+            setView={this.setView}
+            currentUser={this.state.view.params}
+            currentPage="moments" />
+        );
       case 'like-page':
         return (
           <LikePage
@@ -85,9 +92,11 @@ export default class App extends React.Component {
             currentUser={this.state.view.params}
             currentPage="filter"/>
         );
-      case 'user-upload':
+      case 'post':
         return (
-          <UserUpload />
+          <Post
+            setView={this.setView}
+            currentUser={this.state.view.params}/>
         );
       default:
         return <h1>Misssssss Seplling</h1>;

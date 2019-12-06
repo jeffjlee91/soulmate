@@ -7,7 +7,7 @@ if($request['method'] === 'GET') {
 
   //users like current user
   $sqlListLikesOne =
-  "SELECT l.createdAt, u.firstName, u.images
+  "SELECT l.createdAt, u.firstName, u.images, u.userId
    FROM likes AS l
    JOIN users AS u
    ON l.idFrom = u.userId
