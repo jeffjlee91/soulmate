@@ -3,10 +3,16 @@ import React from 'react';
 export default class Menu extends React.Component {
   render() {
     return (
-      <div className={`bg-color menu-slidout ${this.props.slidIn}`}>
+      <div className='bg-color'>
         <div className="d-flex justify-content-end">
           <i className="fas fa-times fas-size p-2"
-            onClick={() => this.props.slidOut()}></i>
+            onClick={() =>
+              this.props.setView(
+                this.props.previousPage,
+                this.props.currentUser
+              )
+            }
+          ></i>
         </div>
         <div className="container">
           <h1>Hello, Jeff</h1>

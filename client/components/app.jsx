@@ -10,6 +10,8 @@ import Filter from './filter';
 import MessageHistory from './message-history';
 import Moments from './moments';
 import Post from './post';
+import Menu from './menu';
+import { CSSTransition } from 'react-transition-group';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -41,7 +43,13 @@ export default class App extends React.Component {
         );
       case 'sign-in':
         return (
-          <SignIn setView={this.setView}/>
+          <CSSTransition
+            in={true}
+            appear={true}
+            classNames="fade"
+            timeout={500}>
+            <SignIn setView={this.setView} />
+          </CSSTransition>
         );
       case 'new-user':
         return (
@@ -101,6 +109,19 @@ export default class App extends React.Component {
           <Post
             setView={this.setView}
             currentUser={this.state.view.params}/>
+        );
+      case 'menu':
+        return (
+          <CSSTransition
+            in={true}
+            appear={true}
+            classNames="left-slide-in"
+            timeout={500}>
+            <Menu
+              setView={this.setView}
+              currentUser={this.state.view.params}
+              previousPage={this.state.view.info} />
+          </CSSTransition>
         );
       default:
         return <h1>Misssssss Seplling</h1>;
