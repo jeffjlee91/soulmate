@@ -73,6 +73,7 @@ export default class App extends React.Component {
           <DiscoverPage
             setView={this.setView}
             currentUser={this.state.view.params}
+            filter={this.state.view.info}
             currentPage="discover-page"/>
         );
       case 'message-history':
@@ -94,11 +95,14 @@ export default class App extends React.Component {
           <LikePage
             setView={this.setView}
             currentUser={this.state.view.params}
-            currentPage="like-page"/>
+            c/>
         );
       case 'filter':
         return (
-          <Filter />
+          <Filter
+            setView={this.setView}
+            currentUser={this.state.view.params}
+            currentPage="filter"/>
         );
       case 'post':
         return (

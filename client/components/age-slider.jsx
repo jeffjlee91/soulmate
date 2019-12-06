@@ -11,6 +11,21 @@ const domain = [18, 40];
 const defaultValues = [21, 28];
 
 class AgeSlider extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ageValue: [21, 28]
+    };
+    this.onUpdate = this.onUpdate.bind(this);
+  }
+
+  onUpdate(event) {
+    this.setState({
+      ageValue: event
+    });
+    this.props.updateAge(this.state.ageValue);
+  }
+
   render() {
     return (
       <div style={{ margin: '1rem', height: '2rem', width: '95%' }}>
@@ -19,6 +34,7 @@ class AgeSlider extends React.Component {
           step={1}
           domain={domain}
           rootStyle={sliderStyle}
+          name='ageValue'
           onUpdate={this.onUpdate}
           onChange={this.onChange}
           values={defaultValues}
