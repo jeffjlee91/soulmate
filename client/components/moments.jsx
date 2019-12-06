@@ -35,7 +35,7 @@ export default class Moments extends React.Component {
   }
 
   getMomentsData() {
-    const gender = 'Female';
+    const gender = this.props.currentUser.gender;
     fetch(`/api/moments?gender=${gender}`)
       .then(res => res.json())
       .then(moments => {
@@ -47,12 +47,14 @@ export default class Moments extends React.Component {
     return (
       <div>
         <div className="bg-color d-flex justify-content-between align-items-center sticky-top">
-          <i className="fas fa-angle-left fas-size p-2"></i>
-          <i className=" fas fa-bars fas-size p-2"></i>
+          <i
+            className="fas fa-camera fas-size p-2"
+            onClick={() => this.props.setView('post', this.props.currentUser)}></i>
+          <i className="fas fa-bars fas-size p-2"></i>
         </div>
-        {this.state.moments.map(cur => <IndividualMoment key={cur.momentId} moment={cur}/>)}
-        <div>
 
+        <div className="fix-overlap">
+          {this.state.moments.map(cur => <IndividualMoment key={cur.momentId} moment={cur} />)}
         </div>
 
         <BottomMenu

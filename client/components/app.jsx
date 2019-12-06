@@ -9,7 +9,7 @@ import LikePage from './like-page';
 import Filter from './filter';
 import MessageHistory from './message-history';
 import Moments from './moments';
-
+import Post from './post';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -87,13 +87,11 @@ export default class App extends React.Component {
         return (
           <Filter />
         );
-      case 'moments':
+      case 'post':
         return (
-          <Moments />
-        );
-      case 'user-upload-photo':
-        return (
-          <UserUploadPhoto />
+          <Post
+            setView={this.setView}
+            currentUser={this.state.view.params}/>
         );
       default:
         return <h1>Misssssss Seplling</h1>;
