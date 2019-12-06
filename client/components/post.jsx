@@ -58,7 +58,8 @@ export default class UserUploadPhoto extends React.Component {
     return (
       <div className="container bg-color pb-2">
         <div className="d-flex justify-content-left align-items-center">
-          <i className="fas fa-angle-left fas-size p-2"></i>
+          <i className="fas fa-angle-left fas-size p-2"
+            onClick={() => this.props.setView('moments', this.props.currentUser)}></i>
         </div>
 
         <form onSubmit={this.uploadHandler.bind(this)}>
@@ -95,7 +96,8 @@ export default class UserUploadPhoto extends React.Component {
             <button type="submit" className="btn btn-primary button col-8">Post</button>
             <button
               type="button"
-              className="btn btn-secondary ml-3 button">Back</button>
+              className="btn btn-secondary ml-3 button"
+              onClick={() => this.props.setView('moments', this.props.currentUser)}>Back</button>
           </div>
         </form>
 
