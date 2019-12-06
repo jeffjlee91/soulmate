@@ -3,7 +3,8 @@ body {
 }
 
 .photo-size {
-  object-fit: contain;
+  object-fit: cover;
+  width: 100%;
 }
 
 .chat-photo {
