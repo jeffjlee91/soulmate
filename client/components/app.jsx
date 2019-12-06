@@ -19,6 +19,7 @@ export default class App extends React.Component {
         name: 'sign-in',
         params: {},
         filter: {}
+      }
     };
     this.setView = this.setView.bind(this);
   }
