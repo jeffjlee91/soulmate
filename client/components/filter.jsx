@@ -6,22 +6,23 @@ class Filter extends React.Component {
     super(props);
     this.state = {
 
-      city: null,
-      state: null,
-      ethnicity: null,
-      religion: null,
-      ageMin: null,
-      ageMax: null,
-      heightMinFeet: null,
-      heightMinInch: null,
-      heightMaxFeet: null,
-      heightMaxInch: null
+      city: '',
+      state: '',
+      ethnicity: '',
+      religion: '',
+      ageMin: 17,
+      ageMax: 51,
+      heightMinFeet: '',
+      heightMinInch: '',
+      heightMaxFeet: '',
+      heightMaxInch: ''
 
     };
     this.backWasClicked = this.backWasClicked.bind(this);
     this.saveWasClicked = this.saveWasClicked.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.updateAge = this.updateAge.bind(this);
+    this.updateFilterBackend = this.updateFilterBackend.bind(this);
   }
 
   backWasClicked() {
@@ -30,7 +31,9 @@ class Filter extends React.Component {
   }
 
   saveWasClicked() {
-    const filter = this.state;
+    const filter = { ...this.state };
+    filter.userId = this.props.currentUser.userId;
+    this.sendFilterBackend(filter);
     this.props.setView('discover-page', this.props.currentUser, filter);
   }
 
@@ -46,6 +49,31 @@ class Filter extends React.Component {
       ageMin: age[0],
       ageMax: age[1]
     });
+  }
+
+  sendFilterBackend(filterInfo) {
+    event.preventDefault();
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(filterInfo)
+    };
+    fetch('/api/filter', req)
+      .then(res => res.json())
+      .catch(err => alert('Error initial: ', err));
+    this.updateFilterBackend(filterInfo);
+  }
+
+  updateFilterBackend(filterInfo) {
+    event.preventDefault();
+    const req = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(filterInfo)
+    };
+    fetch('/api/filter', req)
+      .then(res => res.json())
+      .catch(err => alert('Error in updating: ', err));
   }
 
   render() {

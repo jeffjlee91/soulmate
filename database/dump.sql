@@ -16,6 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `filters`
+--
+
+DROP TABLE IF EXISTS `filters`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `filters` (
+  `userId` int(11) NOT NULL,
+  `city` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `state` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ethnicity` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `religion` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ageMin` int(11) NOT NULL,
+  `ageMax` int(11) NOT NULL,
+  `heightMinFeet` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `heightMinInch` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `heightMaxFeet` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `heightMaxInch` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `filters`
+--
+
+LOCK TABLES `filters` WRITE;
+/*!40000 ALTER TABLE `filters` DISABLE KEYS */;
+/*!40000 ALTER TABLE `filters` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `likes`
 --
 
@@ -36,7 +67,7 @@ CREATE TABLE `likes` (
 
 LOCK TABLES `likes` WRITE;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
-INSERT INTO `likes` VALUES (2,4,1,'2019-12-03 22:58:05'),(2,5,1,'2019-12-03 22:59:49'),(2,12,1,'2019-12-03 23:00:14'),(9,5,1,'2019-12-03 23:01:32'),(8,5,0,'2019-12-03 23:03:40'),(4,2,1,'2019-12-04 00:25:26'),(11,2,1,'2019-12-04 00:51:52'),(5,2,1,'2019-12-04 01:13:20'),(9,3,1,'2019-12-04 02:27:23'),(3,9,1,'2019-12-04 02:28:04'),(3,2,1,'2019-12-04 04:01:57'),(2,3,0,'2019-12-04 04:02:25'),(10,1,1,'2019-12-04 04:20:34'),(3,1,1,'2019-12-04 04:20:56'),(4,1,1,'2019-12-04 04:21:01'),(5,1,1,'2019-12-04 04:21:07'),(11,1,1,'2019-12-04 04:21:13'),(12,1,1,'2019-12-04 04:21:24');
+INSERT INTO `likes` VALUES (9,5,1,'2019-12-03 23:01:32'),(8,5,0,'2019-12-03 23:03:40'),(4,2,1,'2019-12-04 00:25:26'),(11,2,1,'2019-12-04 00:51:52'),(5,2,1,'2019-12-04 01:13:20'),(9,3,1,'2019-12-04 02:27:23'),(3,9,1,'2019-12-04 02:28:04'),(3,2,1,'2019-12-04 04:01:57'),(10,1,1,'2019-12-04 04:20:34'),(3,1,1,'2019-12-04 04:20:56'),(4,1,1,'2019-12-04 04:21:01'),(5,1,1,'2019-12-04 04:21:07'),(11,1,1,'2019-12-04 04:21:13'),(12,1,1,'2019-12-04 04:21:24');
 /*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,4 +174,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-05 23:53:11
+-- Dump completed on 2019-12-06 12:53:29

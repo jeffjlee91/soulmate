@@ -13,6 +13,7 @@ switch ($request['path']) {
   case '/api/discover-page':
   case '/api/individual-message':
   case '/api/likes':
+  case '/api/filter':
   case '/api/message-history':
   case '/api/moments':
     require_once "..${request['path']}.php";

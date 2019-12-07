@@ -6,11 +6,25 @@ class DiscoverPage extends React.Component {
     super(props);
     this.state = {
       users: [],
-      filter: {}
+      filter: null
     };
     this.cardWasClicked = this.cardWasClicked.bind(this);
     this.filterWasClicked = this.filterWasClicked.bind(this);
     this.filterUsers = this.filterUsers.bind(this);
+  }
+
+  getFilter() {
+    fetch(`/api/filter?userId=${this.props.currentUser.userId}`)
+      .then(res => res.json())
+      .then(filterInfo => {
+        if (filterInfo !== null) {
+          this.setState({
+            filter: filterInfo
+          }, () => this.getUsers());
+        } else {
+          this.getUsers();
+        }
+      });
   }
 
   getUsers() {
@@ -23,15 +37,17 @@ class DiscoverPage extends React.Component {
     fetch('/api/discover-page', req)
       .then(res => res.json())
       .then(users => {
-        if (this.props.filter === undefined) {
+        if (this.state.filter === null) {
           this.setState({
             users: users
           });
         } else {
           const filteredArray = [];
           users.map(user => {
-            if (this.filterUsers(user)) {
-              filteredArray.push(this.filterUsers(user));
+            if (this.state.filter !== {}) {
+              if (this.filterUsers(user)) {
+                filteredArray.push(this.filterUsers(user));
+              }
             }
             this.setState({
               users: filteredArray
@@ -60,59 +76,79 @@ class DiscoverPage extends React.Component {
       userHeightInch = newUserHeightArray[2];
     }
 
-    if (this.props.filter.heightMinFeet && this.props.filter.heightMinInch === null) {
-      this.props.heightMinInch = 0;
+    if (this.state.filter.heightMinFeet && this.state.filter.heightMinInch === '') {
+      this.setState(prevState => ({
+        filter: {
+          ...prevState.filter,
+          heightMinInch: 0
+        }
+      }));
     }
 
-    if (this.props.filter.heightMaxFeet && this.props.filter.heightMaxInch === null) {
-      this.props.heightMaxInch = 0;
+    if (this.state.filter.heightMaxFeet && this.state.filter.heightMaxInch === '') {
+      this.setState(prevState => ({
+        filter: {
+          ...prevState.filter,
+          heightMaxInch: 0
+        }
+      }));
     }
 
-    if (this.props.filter.heightMinInch && this.props.filter.heightMinFeet === null) {
-      this.props.heightMinFeet = 4;
+    if (this.state.filter.heightMinInch && this.state.filter.heightMinFeet === '') {
+      this.setState(prevState => ({
+        filter: {
+          ...prevState.filter,
+          heightMinFeet: 4
+        }
+      }));
     }
 
-    if (this.props.filter.heightMaxInch && this.props.filter.heightMaxFeet === null) {
-      this.props.heightMaxFeet = 7;
+    if (this.state.filter.heightMaxInch && this.state.filter.heightMaxFeet === '') {
+      this.setState(prevState => ({
+        filter: {
+          ...prevState.filter,
+          heightMaxFeet: 7
+        }
+      }));
     }
 
-    if (this.props.filter.city !== null && this.props.filter.city !== userCity) {
+    if (this.state.filter.city !== '' && this.state.filter.city !== userCity) {
       return false;
     }
 
-    if (this.props.filter.state !== userState && this.props.filter.state !== null) {
+    if (this.state.filter.state !== userState && this.state.filter.state !== '') {
       return false;
     }
 
-    if (user.age < this.props.filter.ageMin && this.props.filter.ageMin !== null) {
+    if (user.age < this.state.filter.ageMin && this.state.filter.ageMin !== 17) {
       return false;
     }
 
-    if (user.age > this.props.filter.ageMax && this.props.filter.ageMax !== null) {
+    if (user.age > this.state.filter.ageMax && this.state.filter.ageMax !== 51) {
       return false;
     }
 
-    if (this.props.filter.heightMaxFeet !== null && this.props.filter.heightMaxFeet < userHeightFeet) {
+    if (this.state.filter.heightMaxFeet !== '' && this.state.filter.heightMaxFeet < userHeightFeet) {
       return false;
     }
 
-    if (this.props.filter.heightMinFeet > userHeightFeet && this.props.filter.heightMinFeet !== null) {
+    if (this.state.filter.heightMinFeet > userHeightFeet && this.state.filter.heightMinFeet !== '') {
       return false;
     }
 
-    if (this.props.filter.heightMaxInch !== null && this.props.filter.heightMaxInch < userHeightInch) {
+    if (this.state.filter.heightMaxInch !== '' && this.state.filter.heightMaxInch < userHeightInch) {
       return false;
     }
 
-    if (this.props.filter.heightMinInch !== null && this.props.filter.heightMinInch > userHeightInch) {
+    if (this.state.filter.heightMinInch !== '' && this.state.filter.heightMinInch > userHeightInch) {
       return false;
     }
 
-    if (user.ethnicity !== this.props.filter.ethnicity && this.props.filter.ethnicity !== null) {
+    if (user.ethnicity !== this.state.filter.ethnicity && this.state.filter.ethnicity !== '') {
       return false;
     }
 
-    if (user.religion !== this.props.filter.religion && this.props.filter.religion !== null) {
+    if (user.religion !== this.state.filter.religion && this.state.filter.religion !== '') {
       return false;
     }
     return user;
@@ -139,29 +175,26 @@ class DiscoverPage extends React.Component {
   }
 
   componentDidMount() {
-    this.getUsers();
+    this.getFilter();
   }
 
   render() {
-      return (
-        <div className='container bg-color'>
-          <nav className="bg-color fixed-top navbar d-flex justify-content-between align-items-center">
-            <i onClick={this.filterWasClicked} className="fas fa-sliders-h fas-size p-2"></i>
-            <i onClick={this.profileWasClicked} className="fas fa-bars fas-size p-2"></i>
-          </nav>
-          <div className='cardlist'>
-            {this.state.users.map(user => {
-              return (
-                <DiscoverDetail key={user.userId} users={user} currentUser={this.props.currentUser} cardWasClicked={this.cardWasClicked}/>
-              );
-            })}
-          </div>
-          <BottomMenu
-            currentPage={this.props.currentPage}
-            currentUser={this.props.currentUser}
-            setView={this.props.setView} />
+    return (
+      <div className='container bg-color'>
+        <nav className="bg-color fixed-top navbar d-flex justify-content-between align-items-center">
+          <i onClick={this.filterWasClicked} className="fas fa-sliders-h fas-size p-2"></i>
+          <i onClick={this.profileWasClicked} className="fas fa-bars fas-size p-2"></i>
+        </nav>
+        <div className='cardlist'>
+          {this.state.users.map(user => {
+            return (
+              <DiscoverDetail key={user.userId} users={user} currentUser={this.props.currentUser} cardWasClicked={this.cardWasClicked}/>
+            );
+          })}
         </div>
-      );
+        <BottomMenu/>
+      </div>
+    );
   }
 }
 
