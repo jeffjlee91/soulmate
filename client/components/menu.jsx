@@ -15,11 +15,18 @@ export default class Menu extends React.Component {
           ></i>
         </div>
         <div className="container">
-          <h1>Hello, Jeff</h1>
-          <img src="images/Jeff.jpg" className="menu-photo" />
+          <h1>Hello, {this.props.currentUser.firstName}</h1>
+          <img src={this.props.currentUser.images} className="menu-photo" />
           <h3>Change password</h3>
-          <h3>Post</h3>
-          <h3>Logout</h3>
+          <h3
+            onClick={() =>
+              this.props.setView(
+                'main',
+                {},
+                {}
+              )
+            }
+          >Logout</h3>
         </div>
       </div>
     );
