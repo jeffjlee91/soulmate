@@ -180,10 +180,12 @@ class DiscoverPage extends React.Component {
   }
 
   render() {
-      return (
-       <div>
+    return (
+      <div>
         <div className="bg-color sticky-top d-flex justify-content-between align-items-center">
-          <i className="fas fa-sliders-h fas-size p-2"></i>
+          <i className="fas fa-sliders-h fas-size p-2"
+            onClick={this.filterWasClicked}
+          ></i>
           <i className="fas fa-bars fas-size p-2"
             onClick={() =>
               this.props.setView(
@@ -208,6 +210,8 @@ class DiscoverPage extends React.Component {
                     users={user}
                     currentUser={this.props.currentUser}
                     cardWasClicked={this.cardWasClicked}
+                    currentPage={this.props.currentPage}
+                    setView={this.props.setView}
                   />
                 </CSSTransition>
               );
@@ -271,7 +275,16 @@ class DiscoverDetail extends React.Component {
     return (
       <div>
         <div className='card text-center card-padding'>
-          <img src={this.props.users.images} className='card-img-top card-image-discover'></img>
+          <img src={this.props.users.images} className='card-img-top card-image-discover'
+            onClick={() => this.props.setView(
+              'detailed-profile',
+              this.props.currentUser,
+              {
+                userId: this.props.users.userId,
+                previousPage: this.props.currentPage
+              }
+            )}
+          ></img>
           <div className='card-body'>
             <h2 className=''>{this.props.users.firstName}{', '}{this.props.users.age}</h2>
             <div>
