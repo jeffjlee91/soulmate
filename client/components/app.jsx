@@ -19,7 +19,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'change-password',
+        name: 'sign-in',
         params: {},
         info: {}
       }
@@ -128,7 +128,8 @@ export default class App extends React.Component {
         return (
           <ChangePassword
             setView={this.setView}
-            currentUser={this.state.view.params} />
+            currentUser={this.state.view.params}
+            previousPage={this.state.view.info}/>
         );
       default:
         return <h1>Misssssss Seplling</h1>;
