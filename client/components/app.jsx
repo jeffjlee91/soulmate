@@ -10,6 +10,9 @@ import Filter from './filter';
 import MessageHistory from './message-history';
 import Moments from './moments';
 import Post from './post';
+import Menu from './menu';
+import { CSSTransition } from 'react-transition-group';
+import ChangePassword from './change-password';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -18,17 +21,17 @@ export default class App extends React.Component {
       view: {
         name: 'sign-in',
         params: {},
-        filter: {}
+        info: {}
       }
     };
     this.setView = this.setView.bind(this);
   }
 
-  setView(name, params, filter) {
+  setView(name, params, info) {
     const view = {
       name,
       params,
-      filter
+      info
     };
     this.setState({ view });
   }
@@ -41,7 +44,13 @@ export default class App extends React.Component {
         );
       case 'sign-in':
         return (
-          <SignIn setView={this.setView}/>
+          <CSSTransition
+            in={true}
+            appear={true}
+            classNames="fade"
+            timeout={500}>
+            <SignIn setView={this.setView} />
+          </CSSTransition>
         );
       case 'new-user':
         return (
@@ -53,16 +62,19 @@ export default class App extends React.Component {
             setView={this.setView}
             userId={this.state.view.params}/>
         );
-      case 'profile':
+      case 'detailed-profile':
         return (
-          <DetailedProfileView setView={this.setView}/>
+          <DetailedProfileView
+            setView={this.setView}
+            currentUser={this.state.view.params}
+            profileId={this.state.view.info}/>
         );
       case 'discover-page':
         return (
           <DiscoverPage
             setView={this.setView}
             currentUser={this.state.view.params}
-            filter={this.state.view.filter}
+            filter={this.state.view.info}
             currentPage="discover-page"/>
         );
       case 'message-history':
@@ -84,7 +96,7 @@ export default class App extends React.Component {
           <LikePage
             setView={this.setView}
             currentUser={this.state.view.params}
-            c/>
+            currentPage="like-page"/>
         );
       case 'filter':
         return (
@@ -98,6 +110,26 @@ export default class App extends React.Component {
           <Post
             setView={this.setView}
             currentUser={this.state.view.params}/>
+        );
+      case 'menu':
+        return (
+          <CSSTransition
+            in={true}
+            appear={true}
+            classNames="left-slide-in"
+            timeout={500}>
+            <Menu
+              setView={this.setView}
+              currentUser={this.state.view.params}
+              previousPage={this.state.view.info} />
+          </CSSTransition>
+        );
+      case 'change-password':
+        return (
+          <ChangePassword
+            setView={this.setView}
+            currentUser={this.state.view.params}
+            previousPage={this.state.view.info}/>
         );
       default:
         return <h1>Misssssss Seplling</h1>;

@@ -1,5 +1,6 @@
 import React from 'react';
 import BottomMenu from './bottom-menu';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class IndividualLike extends React.Component {
   render() {
@@ -47,7 +48,7 @@ export default class Likepage extends React.Component {
   }
 
   likesClickHandler(like, id) {
-    const isLike = like === 'like';
+    const isLike = like === 'like' ? 1 : 0;
     const idFrom = this.props.currentUser.userId;
     const idTo = id;
     const match = {
@@ -75,16 +76,34 @@ export default class Likepage extends React.Component {
     return (
       <div>
         <div className="bg-color d-flex justify-content-end align-items-center sticky-top">
-          <i className=" fas fa-bars fas-size p-2"></i>
+          <i className=" fas fa-bars fas-size p-2"
+            onClick={() =>
+              this.props.setView(
+                'menu',
+                this.props.currentUser,
+                this.props.currentPage)
+            }
+          ></i>
         </div>
 
         <div className="container fix-overlap">
-          {this.state.likes.map(cur => {
-            return <IndividualLike
-              user={cur}
-              key={cur.userId}
-              likesClickHandler={this.likesClickHandler.bind(this)} />;
-          })}
+          <TransitionGroup>
+            {this.state.likes.map(cur => {
+              return (
+                <CSSTransition
+                  classNames="fade"
+                  timeout={500}
+                  key={cur.userId}
+                >
+                  <IndividualLike
+                    user={cur}
+                    key={cur.userId}
+                    likesClickHandler={this.likesClickHandler.bind(this)}
+                  />
+                </CSSTransition>
+              );
+            })}
+          </TransitionGroup>
         </div>
 
         <BottomMenu

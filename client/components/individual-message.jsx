@@ -56,6 +56,7 @@ export default class IndividualMessage extends React.Component {
   }
 
   componentDidMount() {
+    // this.interval = setInterval(() => this.getMessages(this.props.userId.idFrom, this.props.userId.idTo), 500);
     this.getMessages(this.props.userId.idFrom, this.props.userId.idTo);
   }
 
@@ -100,11 +101,10 @@ export default class IndividualMessage extends React.Component {
     const currentUserId = this.props.userId.idFrom;
     return (
       <div>
-        <div className="bg-color d-flex justify-content-between align-items-center sticky-top">
+        <div className="bg-color sticky-top">
           <i
             className="fas fa-angle-left fas-size p-2"
             onClick={() => this.props.setView('message-history', this.props.userId.currentUser)}></i>
-          <i className="fas fa-bars fas-size p-2"></i>
         </div>
 
         <div className="container fix-overlap">

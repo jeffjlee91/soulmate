@@ -34,7 +34,8 @@
   "dependencies": {
     "react": "16.12.0",
     "react-compound-slider": "2.4.0",
-    "react-dom": "16.12.0"
+    "react-dom": "16.12.0",
+    "react-transition-group": "4.3.0"
   },
   "husky": {
     "hooks": {
