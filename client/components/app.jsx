@@ -67,7 +67,7 @@ export default class App extends React.Component {
           <DetailedProfileView
             setView={this.setView}
             currentUser={this.state.view.params}
-            profileId={this.state.view.info}/>
+            info={this.state.view.info}/>
         );
       case 'discover-page':
         return (

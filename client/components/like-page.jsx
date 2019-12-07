@@ -8,7 +8,18 @@ class IndividualLike extends React.Component {
     return (
       <div className="row mb-3 align-content-center">
         <div className="col-6">
-          <img src={this.props.user.images} className="rounded img-fluid likes-photo" />
+          <img
+            src={this.props.user.images}
+            className="rounded img-fluid likes-photo"
+            onClick={() => this.props.setView(
+              'detailed-profile',
+              this.props.currentUser,
+              {
+                userId: this.props.user.userId,
+                previousPage: this.props.currentPage
+              }
+            )}
+          />
         </div>
         <div className="col-6 row likes-bottom-line row">
           <div className="mdate col-12 text-center">{data.split(' ').shift()}</div>
@@ -99,6 +110,9 @@ export default class Likepage extends React.Component {
                     user={cur}
                     key={cur.userId}
                     likesClickHandler={this.likesClickHandler.bind(this)}
+                    currentPage={this.props.currentPage}
+                    setView={this.props.setView}
+                    currentUser={this.props.currentUser}
                   />
                 </CSSTransition>
               );
