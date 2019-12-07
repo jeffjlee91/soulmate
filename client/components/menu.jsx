@@ -17,7 +17,15 @@ export default class Menu extends React.Component {
         <div className="container">
           <h1>Hello, {this.props.currentUser.firstName}</h1>
           <img src={this.props.currentUser.images} className="menu-photo" />
-          <h3>Change password</h3>
+          <h3
+            onClick={() =>
+              this.props.setView(
+                'change-password',
+                this.props.currentUser,
+                this.props.previousPage
+              )
+            }
+          >Change password</h3>
           <h3
             onClick={() =>
               this.props.setView(
