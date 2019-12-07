@@ -7,7 +7,15 @@ class IndividualMoment extends React.Component {
     return (
       <div className="mb-5">
         <div className="d-flex align-items-center container"
-          onClick={() => this.props.setView('detailed-profile', this.props.currentUser, this.props.moment.userId)}>
+          onClick={() => this.props.setView(
+            'detailed-profile',
+            this.props.currentUser,
+            {
+              userId: this.props.moment.userId,
+              previousPage: this.props.currentPage
+            }
+          )}
+        >
           <img src={this.props.moment.images} className="img-fluid micro-photo" />
           <div className="micro-font ml-3">{this.props.moment.firstName}</div>
         </div>
@@ -80,7 +88,9 @@ export default class Moments extends React.Component {
                     key={cur.momentId}
                     moment={cur}
                     currentUser={this.props.currentUser}
-                    setView={this.props.setView} />
+                    setView={this.props.setView}
+                    currentPage={this.props.currentPage}
+                  />
                 </CSSTransition>
               );
             })}

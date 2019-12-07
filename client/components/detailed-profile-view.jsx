@@ -14,7 +14,7 @@ export default class DetailedProfileView extends React.Component {
   }
 
   getUserData() {
-    const currentProfile = this.props.profileId;
+    const currentProfile = this.props.info.userId;
     fetch(`/api/profile?userId=${currentProfile}`)
       .then(res => res.json())
       .then(user => this.setState({ user }))
@@ -46,10 +46,9 @@ export default class DetailedProfileView extends React.Component {
   render() {
     return (
       <div>
-        <div className="d-flex justify-content-between align-items-center sticky-top bg-color">
+        <div className="d-flex sticky-top bg-color">
           <i className="fas fa-angle-left fas-size p-2"
-            onClick={() => this.props.setView('moments', this.props.currentUser)}></i>
-          <i className="fas fa-bars fas-size p-2"></i>
+            onClick={() => this.props.setView(this.props.info.previousPage, this.props.currentUser)}></i>
         </div>
         <div className="container bg-color mb-2">
           <div className="row">
@@ -95,9 +94,9 @@ export default class DetailedProfileView extends React.Component {
           </div>
           <div className="d-flex justify-content-around">
             <div className="fas fa-heart fas-size3 likeHeart red"
-              onClick={() => this.likesClickHandler('like', this.props.profileId)}></div>
+              onClick={() => this.likesClickHandler('like', this.props.info.userId)}></div>
             <div className="fas fa-heart-broken fas-size3 likeHeart"
-              onClick={() => this.likesClickHandler('dislike', this.props.profileId)}></div>
+              onClick={() => this.likesClickHandler('dislike', this.props.info.userId)}></div>
           </div>
         </div>
       </div>
