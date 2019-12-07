@@ -26,15 +26,14 @@ class Filter extends React.Component {
   }
 
   backWasClicked() {
-    const filter = this.state;
-    this.props.setView('discover-page', this.props.currentUser, filter);
+    this.props.setView('discover-page', this.props.currentUser);
   }
 
   saveWasClicked() {
     const filter = { ...this.state };
     filter.userId = this.props.currentUser.userId;
     this.sendFilterBackend(filter);
-    this.props.setView('discover-page', this.props.currentUser, filter);
+    this.props.setView('discover-page', this.props.currentUser);
   }
 
   onChangeHandler(event) {
