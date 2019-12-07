@@ -12,13 +12,14 @@ import Moments from './moments';
 import Post from './post';
 import Menu from './menu';
 import { CSSTransition } from 'react-transition-group';
+import ChangePassword from './change-password';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'sign-in',
+        name: 'change-password',
         params: {},
         info: {}
       }
@@ -95,7 +96,7 @@ export default class App extends React.Component {
           <LikePage
             setView={this.setView}
             currentUser={this.state.view.params}
-            c/>
+            currentPage="like-page"/>
         );
       case 'filter':
         return (
@@ -122,6 +123,12 @@ export default class App extends React.Component {
               currentUser={this.state.view.params}
               previousPage={this.state.view.info} />
           </CSSTransition>
+        );
+      case 'change-password':
+        return (
+          <ChangePassword
+            setView={this.setView}
+            currentUser={this.state.view.params} />
         );
       default:
         return <h1>Misssssss Seplling</h1>;

@@ -1,5 +1,6 @@
 import React from 'react';
 import BottomMenu from './bottom-menu';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 class IndividualMoment extends React.Component {
   render() {
@@ -14,10 +15,6 @@ class IndividualMoment extends React.Component {
           {this.props.moment.message}
         </div>
         <img src={this.props.moment.picture} className="img-fluid photo-stats" />
-        <div className="d-flex align-items-center container mt-2">
-          <i className="fas fa-heart fas-size3 grey"></i>
-          <h3 className="ml-3">{this.props.moment.likes}</h3>
-        </div>
       </div>
     );
   }
@@ -35,12 +32,21 @@ export default class Moments extends React.Component {
     this.getMomentsData();
   }
 
+  shuffleMoments(array) {
+    for (let index = array.length - 1; index > 0; index--) {
+      const current = Math.floor(Math.random() * (index + 1));
+      [array[index], array[current]] = [array[current], array[index]];
+    }
+    return array;
+  }
+
   getMomentsData() {
     const gender = this.props.currentUser.gender;
+
     fetch(`/api/moments?gender=${gender}`)
       .then(res => res.json())
       .then(moments => {
-        this.setState({ moments });
+        this.setState({ moments: this.shuffleMoments(moments) });
       }).catch(err => alert('getMomentsData error', err));
   }
 
@@ -62,13 +68,23 @@ export default class Moments extends React.Component {
         </div>
 
         <div className="fix-overlap">
-          {this.state.moments.map(cur => {
-            return <IndividualMoment
-              key={cur.momentId}
-              moment={cur}
-              currentUser={this.props.currentUser}
-              setView={this.props.setView}/>;
-          })}
+          <TransitionGroup>
+            {this.state.moments.map(cur => {
+              return (
+                <CSSTransition
+                  classNames="Fade"
+                  timeout={500}
+                  key={cur.momentId}
+                >
+                  <IndividualMoment
+                    key={cur.momentId}
+                    moment={cur}
+                    currentUser={this.props.currentUser}
+                    setView={this.props.setView} />
+                </CSSTransition>
+              );
+            })}
+          </TransitionGroup>
         </div>
 
         <BottomMenu
