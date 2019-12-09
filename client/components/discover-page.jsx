@@ -182,7 +182,7 @@ class DiscoverPage extends React.Component {
   render() {
     return (
       <div>
-        <div className="bg-color sticky-top d-flex justify-content-between align-items-center">
+        <div className="sticky-top d-flex justify-content-between align-items-center">
           <i className="fas fa-sliders-h fas-size p-2"
             onClick={this.filterWasClicked}
           ></i>
