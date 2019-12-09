@@ -48,6 +48,9 @@ class DiscoverPage extends React.Component {
             if (this.state.filter !== {}) {
               if (this.filterUsers(user)) {
                 filteredArray.push(this.filterUsers(user));
+                this.setState({
+                  users: filteredArray
+                });
               }
             }
             this.setState({
@@ -131,17 +134,15 @@ class DiscoverPage extends React.Component {
 
     if (this.state.filter.heightMaxFeet !== '' && this.state.filter.heightMaxFeet < userHeightFeet) {
       return false;
+    } else if (this.state.filter.heightMaxInch !== '' && this.state.filter.heightMaxInch < userHeightInch &&
+                this.state.filter.heightMaxFeet === userHeightFeet) {
+      return false;
     }
 
     if (this.state.filter.heightMinFeet > userHeightFeet && this.state.filter.heightMinFeet !== '') {
       return false;
-    }
-
-    if (this.state.filter.heightMaxInch !== '' && this.state.filter.heightMaxInch < userHeightInch) {
-      return false;
-    }
-
-    if (this.state.filter.heightMinInch !== '' && this.state.filter.heightMinInch > userHeightInch) {
+    } else if (this.state.filter.heightMinFeet === userHeightFeet && this.state.filter.heightMinInch !== '' &&
+                this.state.filter.heightMinInch > userHeightInch) {
       return false;
     }
 
