@@ -80,7 +80,7 @@ export default class Moments extends React.Component {
             {this.state.moments.map(cur => {
               return (
                 <CSSTransition
-                  classNames="Fade"
+                  classNames="fade"
                   timeout={500}
                   key={cur.momentId}
                 >
