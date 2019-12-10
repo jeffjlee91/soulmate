@@ -275,7 +275,7 @@ class DiscoverDetail extends React.Component {
   render() {
     return (
       <div>
-        <div className='card text-center card-padding'>
+        <div className='card text-center card-padding box-shadow'>
           <img src={this.props.users.images} className='card-img-top card-image-discover'
             onClick={() => this.props.setView(
               'detailed-profile',

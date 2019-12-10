@@ -456,3 +456,7 @@ body {
   width: 100vh;
   transition: all 700ms linear 1200ms;
 }
+
+.box-shadow {
+  box-shadow: 10px 10px 5px grey;
+}
