@@ -1,4 +1,5 @@
 import React from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class LeftMessage extends React.Component {
   render() {
@@ -56,8 +57,16 @@ export default class IndividualMessage extends React.Component {
   }
 
   componentDidMount() {
-    // this.interval = setInterval(() => this.getMessages(this.props.userId.idFrom, this.props.userId.idTo), 500);
-    this.getMessages(this.props.userId.idFrom, this.props.userId.idTo);
+    // this.interval = setInterval(
+    //   () => this.getMessages(
+    //     this.props.userId.idFrom,
+    //     this.props.userId.idTo),
+    //     500
+    //   );
+    this.getMessages(
+      this.props.userId.idFrom,
+      this.props.userId.idTo
+    );
   }
 
   sendMessage() {
@@ -108,9 +117,22 @@ export default class IndividualMessage extends React.Component {
         </div>
 
         <div className="container fix-overlap">
-          {this.state.messages.map(cur => cur.idFrom === currentUserId
-            ? <RightMessage key={cur.createdAt} user={cur} />
-            : <LeftMessage key={cur.createdAt} user={cur} />)}
+          <TransitionGroup>
+            {this.state.messages.map(cur => {
+              const currentMessage = cur.idFrom === currentUserId
+                ? <RightMessage key={cur.createdAt} user={cur} />
+                : <LeftMessage key={cur.createdAt} user={cur} />;
+              return (
+                <CSSTransition
+                  classNames="fade"
+                  timeout={500}
+                  key={cur.createdAt}
+                >
+                  {currentMessage}
+                </CSSTransition>
+              );
+            })}
+          </TransitionGroup>
         </div>
 
         <div className="fixed-bottom gray">
