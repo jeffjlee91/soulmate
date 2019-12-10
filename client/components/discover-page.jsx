@@ -209,6 +209,7 @@ class DiscoverPage extends React.Component {
             );
           })}
         </div>
+
         <BottomMenu
           currentPage={this.props.currentPage}
           currentUser={this.props.currentUser}
