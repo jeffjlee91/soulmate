@@ -77,8 +77,8 @@ class Filter extends React.Component {
 
   render() {
     return (
-      <div className='container bg-color'>
-        <nav className="bg-color fixed-top navbar d-flex justify-content-between align-items-center">
+      <div className='container bg-bar'>
+        <nav className="bg-bar fixed-top navbar d-flex justify-content-between align-items-center">
           <i onClick={this.backWasClicked} className="fas fa-angle-left fas-size p-2"></i>
           <h3 className='paddingRight'>Filter</h3>
         </nav>

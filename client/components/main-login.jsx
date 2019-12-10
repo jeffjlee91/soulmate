@@ -12,7 +12,7 @@ export default class MainLogin extends React.Component {
 
   render() {
     return (
-      <div className="container bg-color">
+      <div className="container bg-bar">
         <div className="d-flex justify-content-center row align-content-center full-view-height">
           <h1 className="title col-12">Soul Mate</h1>
           <div className="mt-2 slogan">Soulmate is an overused term,</div>
