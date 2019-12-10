@@ -1,5 +1,6 @@
 import React from 'react';
 import BottomMenu from './bottom-menu';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class DiscoverPage extends React.Component {
   constructor(props) {
@@ -195,19 +196,28 @@ class DiscoverPage extends React.Component {
               )}
           ></i>
         </div>
+
         <div className='container fix-overlap'>
-          {this.state.users.map(user => {
-            return (
-              <DiscoverDetail
-                key={user.userId}
-                users={user}
-                currentUser={this.props.currentUser}
-                cardWasClicked={this.cardWasClicked}
-                currentPage={this.props.currentPage}
-                setView={this.props.setView}
-              />
-            );
-          })}
+          <TransitionGroup>
+            {this.state.users.map(user => {
+              return (
+                <CSSTransition
+                  classNames="fade"
+                  timeout={500}
+                  key={user.userId}
+                >
+                  <DiscoverDetail
+                    key={user.userId}
+                    users={user}
+                    currentUser={this.props.currentUser}
+                    cardWasClicked={this.cardWasClicked}
+                    currentPage={this.props.currentPage}
+                    setView={this.props.setView}
+                  />
+                </CSSTransition>
+              );
+            })}
+          </TransitionGroup>
         </div>
 
         <BottomMenu
@@ -224,16 +234,13 @@ class DiscoverDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {},
-      fade: false,
-      darkfade: false
+      user: {}
     };
     this.likeClicked = this.likeClicked.bind(this);
     this.dislikeClicked = this.dislikeClicked.bind(this);
   }
 
   likeClicked() {
-    this.setState({ fade: true });
     const likeData = {
       idFrom: this.props.currentUser.userId,
       idTo: this.props.users.userId,
@@ -246,11 +253,10 @@ class DiscoverDetail extends React.Component {
     };
     fetch('/api/likes', req)
       .then(res => res.json());
-    setTimeout(() => { this.props.cardWasClicked(this.props.users.userId); }, 1500);
+    this.props.cardWasClicked(this.props.users.userId);
   }
 
   dislikeClicked() {
-    this.setState({ darkfade: true });
     const dislikeData = {
       idFrom: this.props.currentUser.userId,
       idTo: this.props.users.userId,
@@ -263,15 +269,13 @@ class DiscoverDetail extends React.Component {
     };
     fetch('/api/likes', req)
       .then(res => res.json());
-    setTimeout(() => { this.props.cardWasClicked(this.props.users.userId); }, 1500);
+    this.props.cardWasClicked(this.props.users.userId);
   }
 
   render() {
-    const fade = this.state.fade;
-    const darkfade = this.state.darkfade;
     return (
       <div>
-        <div className={darkfade ? 'darkfade card text-center card-padding' : 'card text-center card-padding'}>
+        <div className='card text-center card-padding'>
           <img src={this.props.users.images} className='card-img-top card-image-discover'
             onClick={() => this.props.setView(
               'detailed-profile',
@@ -284,13 +288,9 @@ class DiscoverDetail extends React.Component {
           ></img>
           <div className='card-body'>
             <h2 className=''>{this.props.users.firstName}{', '}{this.props.users.age}</h2>
-            <div className='justify-content-around'>
-              <i onClick={this.likeClicked}
-                className={fade ? 'fade heartSizing fas likeHeart fa-heart red' : 'fas fa-heart fas-size3 likeHeart red'}>
-              </i>
-              <i onClick={this.dislikeClicked}
-                className={fade ? 'fas fas-size3 fa-heart-broken displayNone' : 'fas fa-heart-broken fas-size3 dislikeHeart'}>
-              </i>
+            <div>
+              <i onClick={this.likeClicked} className="fas fa-heart fas-size3 likeHeart red"></i>
+              <i onClick={this.dislikeClicked} className="fas fa-heart-broken fas-size3 likeHeart"></i>
             </div>
           </div>
         </div>
