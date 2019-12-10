@@ -20,85 +20,120 @@ export default class Menu extends React.Component {
             in={true}
             appear={true}
             classNames="menu-fade-hello"
-            timeout={500}
+            timeout={1300}
           >
-            <div className="d-flex align-items-center">
-              <h2>Hello, {this.props.currentUser.firstName}</h2>
+            <div
+              className="d-flex justify-content-between">
+              <div className="menu-hello">
+                Hello,
+                {this.props.currentUser.firstName}
+              </div>
               <img
                 src={this.props.currentUser.images}
-                className="menu-photo ml-2"
+                className="menu-photo"
               />
+            </div>
+          </CSSTransition>
+        </div>
+
+        <div className="container">
+          <CSSTransition
+            in={true}
+            appear={true}
+            classNames="menu-fade-moments"
+            timeout={1300}
+          >
+            <div
+              className="menu-text"
+              onClick={() => this.props.setView(
+                'moments',
+                this.props.currentUser
+              )}
+            >
+              <i className="fas fa-camera-retro mr-3"></i>
+              Moments
             </div>
           </CSSTransition>
 
           <CSSTransition
             in={true}
             appear={true}
-            classNames="menu-fade-moments"
-            timeout={500}
-          >
-            <h3>
-              Moments
-            </h3>
-          </CSSTransition>
-
-          <CSSTransition
-            in={true}
-            appear={true}
             classNames="menu-fade-likes"
-            timeout={500}
+            timeout={1300}
           >
-            <h3>
-                Likes
-            </h3>
+            <div
+              className="menu-text"
+              onClick={() => this.props.setView(
+                'like-page',
+                this.props.currentUser
+              )}
+            >
+              <i className="fas fa-heart mr-3"></i>
+              Likes
+            </div>
           </CSSTransition>
 
           <CSSTransition
             in={true}
             appear={true}
             classNames="menu-fade-discover"
-            timeout={500}
+            timeout={1300}
           >
-            <h3>
+            <div
+              className="menu-text"
+              onClick={() => this.props.setView(
+                'discover-page',
+                this.props.currentUser
+              )}
+            >
+              <i className="fas fa-search mr-3"></i>
               Discover
-            </h3>
+            </div>
           </CSSTransition>
 
           <CSSTransition
             in={true}
             appear={true}
             classNames="menu-fade-chats"
-            timeout={500}
+            timeout={1300}
           >
-            <h3>
+            <div
+              className="menu-text"
+              onClick={() => this.props.setView(
+                'message-history',
+                this.props.currentUser
+              )}
+            >
+              <i className="fas fa-comments mr-3"></i>
               Chats
-            </h3>
+            </div>
           </CSSTransition>
 
           <CSSTransition
             in={true}
             appear={true}
             classNames="menu-fade-edit"
-            timeout={500}
+            timeout={1300}
           >
-            <h3
+            <div className="menu-text"
               onClick={() => this.props.setView(
                 'edit',
                 this.props.currentUser,
                 this.props.previousPage
               )}
             >
+              <i className="fas fa-edit mr-3"></i>
               Edit
-            </h3>
+            </div>
           </CSSTransition>
 
           <CSSTransition
             in={true}
             appear={true}
             classNames="menu-fade-password"
-            timeout={500}
+            timeout={1300}
           >
-            <h3
+            <div className="menu-text"
               onClick={() =>
                 this.props.setView(
                   'change-password',
@@ -106,16 +141,19 @@ export default class Menu extends React.Component {
                   this.props.previousPage
                 )
               }
-            >Change password</h3>
+            >
+              <i className="fas fa-key mr-3"></i>
+              Change password
+            </div>
           </CSSTransition>
 
           <CSSTransition
             in={true}
             appear={true}
             classNames="menu-fade-logout"
-            timeout={500}
+            timeout={1300}
           >
-            <h3
+            <div className="menu-text"
               onClick={() =>
                 this.props.setView(
                   'main',
@@ -123,14 +161,17 @@ export default class Menu extends React.Component {
                   {}
                 )
               }
-            >Logout</h3>
+            >
+              <i className="fas fa-sign-out-alt mr-3"></i>
+              Logout
+            </div>
           </CSSTransition>
         </div>
         <CSSTransition
           in={true}
           appear={true}
           classNames="menu-bg-one"
-          timeout={500}
+          timeout={1300}
         >
           <div className="menu-bg-one"></div>
         </CSSTransition>
@@ -138,7 +179,7 @@ export default class Menu extends React.Component {
           in={true}
           appear={true}
           classNames="menu-bg-two"
-          timeout={500}
+          timeout={1300}
         >
           <div className="menu-bg-two"></div>
         </CSSTransition>

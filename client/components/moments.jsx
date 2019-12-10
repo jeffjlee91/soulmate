@@ -5,7 +5,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 class IndividualMoment extends React.Component {
   render() {
     return (
-      <div className="mb-5">
+      <div className="mb-3 mt-2">
         <div className="d-flex align-items-center container"
           onClick={() => this.props.setView(
             'detailed-profile',

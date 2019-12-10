@@ -1,9 +1,5 @@
-body {
-  background-color: #EAEAEA;
-}
-
 .bg-bar {
-  background-color: #EAEAEA;
+  background-color: white;
 }
 
 .photo-size {
@@ -19,15 +15,31 @@ body {
 
 .menu-photo {
   object-fit: cover;
-  height: 70px;
-  width: 70px;
+  height: 100px;
+  width: 100px;
   border-radius: 100%;
+  box-shadow: 0px 0px 5px 1px black;
 }
 
 .likes-photo {
   object-fit: cover;
   width: 157.5px;
   height: 157.5px;
+}
+
+.menu-text {
+  color: white;
+  font-size: 1.7rem;
+  text-shadow: 1px 1px 5px black;
+  padding: 12px;
+}
+
+.menu-hello {
+  width: 65%;
+  font-size: 2.2rem;
+  overflow: hidden;
+  margin-left: 12px;
+  text-shadow: 2px 1px 3px #aaaaaa;
 }
 
 .message-photo {
@@ -126,7 +138,7 @@ body {
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   box-shadow: none !important;
-  background-color: #EAEAEA;
+  background-color: white;
   padding: 0;
 }
 
@@ -143,15 +155,15 @@ body {
  }
 
 .width-25 {
-  width: 25%
+  width: 25%;
 }
 
 .gray {
-  background-color: gray;
+  background-color: white;
 }
 
 .lightgray {
-  color: #FFFFFF
+  color: #000000;
 }
 
 .opac50 {
@@ -340,27 +352,29 @@ body {
 }
 
 .menu-bg-one {
-  background-color: rgba(2, 176, 255, 0.48);
+  background-color: rgba(88, 88, 88, 0.22);
   height: 100vh;
   width: 100vh;
   border-radius: 50%;
   position: absolute;
   overflow: hidden;
-  top: -36%;
-  right: -70%;
+  top: -15%;
+  right: -80%;
   z-index: -1;
+  box-shadow: -3px 2px 20px 0px black;
 }
 
 .menu-bg-two {
-  background-color: rgba(75, 0, 208, 0.78);
+  background-color: rgba(0, 0, 0, 0.66);
   height: 100vh;
   width: 100vh;
   border-radius: 50%;
   position: absolute;
   overflow: hidden;
-  top: -35%;
+  top: 17%;
   right: -30%;
   z-index: -1;
+  box-shadow: 3px -2px 10px 0px black;
 }
 
 .menu-fade-hello-appear {
@@ -443,7 +457,7 @@ body {
 .menu-bg-one-appear.menu-bg-one-appear-active {
   height: 100vh;
   width: 100vh;
-  transition: all 1000ms linear 1000ms;
+  transition: all 670ms linear;
 }
 
 .menu-bg-two-appear {
@@ -454,5 +468,5 @@ body {
 .menu-bg-two-appear.menu-bg-two-appear-active {
   height: 100vh;
   width: 100vh;
-  transition: all 700ms linear 1200ms;
+  transition: all 500ms linear;
 }

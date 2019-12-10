@@ -1,5 +1,6 @@
 import React from 'react';
 import BottomMenu from './bottom-menu';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 class IndividualMatch extends React.Component {
   render() {
@@ -9,7 +10,7 @@ class IndividualMatch extends React.Component {
         idTo: this.props.user.userId,
         currentUser: this.props.currentUser
       })}>
-        <div className="row mb-3">
+        <div className="row mb-3 mt-2">
           <div className="col-3">
             <img src={this.props.user.images} className="rounded img-fluid chat-photo" />
           </div>
@@ -59,12 +60,25 @@ export default class MessageHistory extends React.Component {
         </div>
 
         <div className="container fix-overlap">
-          {this.state.match.map((cur, index) => <IndividualMatch
-            key={cur.userId}
-            user={cur}
-            currentUserId={this.props.currentUser.userId}
-            setView={this.props.setView}
-            currentUser={this.props.currentUser}/>)}
+          <TransitionGroup>
+            {this.state.match.map((cur, index) => {
+              return (
+                <CSSTransition
+                  classNames="fade"
+                  timeout={500}
+                  key={cur.userId}
+                >
+                  <IndividualMatch
+                    key={cur.userId}
+                    user={cur}
+                    currentUserId={this.props.currentUser.userId}
+                    setView={this.props.setView}
+                    currentUser={this.props.currentUser}
+                  />
+                </CSSTransition>
+              );
+            })}
+          </TransitionGroup>
         </div>
 
         <BottomMenu

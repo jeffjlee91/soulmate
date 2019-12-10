@@ -6,7 +6,7 @@ class IndividualLike extends React.Component {
   render() {
     const data = this.props.user.createdAt;
     return (
-      <div className="row mb-3 align-content-center">
+      <div className="row mb-3 align-content-center mt-2">
         <div className="col-6">
           <img
             src={this.props.user.images}

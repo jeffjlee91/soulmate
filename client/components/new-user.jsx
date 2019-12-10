@@ -41,7 +41,7 @@ export default class NewUser extends React.Component {
         if (result === 'email has already exist') {
           this.setState({ emailCheck: 'The email has already existed' });
         } else {
-          // get new user info for future use
+          this.props.setView('discover-page', result);
         }
       }).catch(err => alert('createHandler error', err));
   }
