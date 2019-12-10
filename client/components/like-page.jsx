@@ -86,7 +86,7 @@ export default class Likepage extends React.Component {
   render() {
     return (
       <div>
-        <div className="bg-color d-flex justify-content-end align-items-center sticky-top">
+        <div className="d-flex justify-content-end align-items-center sticky-top">
           <i className=" fas fa-bars fas-size p-2"
             onClick={() =>
               this.props.setView(

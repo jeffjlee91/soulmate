@@ -13,6 +13,7 @@ import Post from './post';
 import Menu from './menu';
 import { CSSTransition } from 'react-transition-group';
 import ChangePassword from './change-password';
+import Edit from './edit';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -117,7 +118,8 @@ export default class App extends React.Component {
             in={true}
             appear={true}
             classNames="left-slide-in"
-            timeout={500}>
+            timeout={500}
+          >
             <Menu
               setView={this.setView}
               currentUser={this.state.view.params}
@@ -130,6 +132,13 @@ export default class App extends React.Component {
             setView={this.setView}
             currentUser={this.state.view.params}
             previousPage={this.state.view.info}/>
+        );
+      case 'edit':
+        return (
+          <Edit
+            setView={this.setView}
+            currentUser={this.state.view.params}
+            previousPage={this.state.view.info} />
         );
       default:
         return <h1>Misssssss Seplling</h1>;

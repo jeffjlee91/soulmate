@@ -61,7 +61,7 @@ export default class Moments extends React.Component {
   render() {
     return (
       <div>
-        <div className="bg-color d-flex justify-content-between align-items-center sticky-top">
+        <div className="d-flex justify-content-between align-items-center sticky-top">
           <i
             className="fas fa-camera fas-size p-2"
             onClick={() => this.props.setView('post', this.props.currentUser)}></i>
