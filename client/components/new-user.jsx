@@ -85,8 +85,8 @@ export default class NewUser extends React.Component {
 
   render() {
     return (
-      <div className="container bg-color pb-2">
-        <div className="d-flex justify-content-left align-items-center">
+      <div className="pb-2">
+        <div className="bg-bar sticky-top d-flex justify-content-left align-items-center">
           <i
             className="fas fa-angle-left fas-size p-2"
             onClick={this.backHandler.bind(this)}></i>

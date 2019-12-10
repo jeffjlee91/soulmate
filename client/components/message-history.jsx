@@ -47,8 +47,8 @@ export default class MessageHistory extends React.Component {
   render() {
     return (
       <div>
-        <div className="d-flex justify-content-end sticky-top">
-          <i className=" fas fa-bars fas-size p-2"
+        <div className="bg-bar d-flex justify-content-end sticky-top">
+          <i className="fas fa-bars fas-size p-2"
             onClick={() =>
               this.props.setView(
                 'menu',

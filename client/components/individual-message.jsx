@@ -101,7 +101,7 @@ export default class IndividualMessage extends React.Component {
     const currentUserId = this.props.userId.idFrom;
     return (
       <div>
-        <div className="bg-color sticky-top">
+        <div className="bg-bar sticky-top">
           <i
             className="fas fa-angle-left fas-size p-2"
             onClick={() => this.props.setView('message-history', this.props.userId.currentUser)}></i>

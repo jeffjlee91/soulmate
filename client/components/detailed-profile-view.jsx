@@ -46,11 +46,11 @@ export default class DetailedProfileView extends React.Component {
   render() {
     return (
       <div>
-        <div className="d-flex sticky-top bg-color">
+        <div className="d-flex sticky-top bg-bar">
           <i className="fas fa-angle-left fas-size p-2"
             onClick={() => this.props.setView(this.props.info.previousPage, this.props.currentUser)}></i>
         </div>
-        <div className="container bg-color mb-2">
+        <div className="container bg-bar mb-2">
           <div className="row">
             <img src={this.state.user.images} alt="some guy face" className="img-fluid photo-size rounded-top" />
           </div>

@@ -2,6 +2,10 @@ body {
   background-color: #EAEAEA;
 }
 
+.bg-bar {
+  background-color: #EAEAEA;
+}
+
 .photo-size {
   object-fit: cover;
   width: 100%;
