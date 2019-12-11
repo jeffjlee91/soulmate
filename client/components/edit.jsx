@@ -220,7 +220,7 @@ export default class Edit extends React.Component {
                     <option defaultValue>Choose...</option>
                     <option value="Christian">Christian</option>
                     <option value="Buddhist">Buddhist</option>
-                    <option value="Catolic">Catolic</option>
+                    <option value="Catholic">Catholic</option>
                     <option value="Hindu">Hindu</option>
                     <option value="Muslim">Muslim</option>
                     <option value="None">None</option>
