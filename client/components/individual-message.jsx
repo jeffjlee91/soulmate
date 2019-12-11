@@ -14,7 +14,7 @@ class LeftMessage extends React.Component {
           <img src={this.props.user.images} className="message-photo" />
           <div className="d-flex">
             <i className="fas fa-angle-left message-arrow-left"></i>
-            <p className="bg-white message-body align-self-center">
+            <p className="message-body align-self-center">
               {this.props.user.message}
             </p>
           </div>
@@ -36,7 +36,7 @@ class RightMessage extends React.Component {
         <div className="d-flex flex-row-reverse mb-2">
           <img src={this.props.user.images} className="message-photo" />
           <div className="d-flex">
-            <p className="bg-white message-body align-self-center">
+            <p className="message-body align-self-center">
               {this.props.user.message}
             </p>
             <i className="fas fa-angle-right message-arrow-right"></i>
@@ -135,7 +135,7 @@ export default class IndividualMessage extends React.Component {
           </TransitionGroup>
         </div>
 
-        <div className="fixed-bottom gray">
+        <div className="fixed-bottom message-box">
           <div className="container d-flex align-items-center">
             <textarea
               name="newMessage"

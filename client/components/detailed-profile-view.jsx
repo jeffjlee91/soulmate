@@ -1,4 +1,5 @@
 import React from 'react';
+import { CSSTransition } from 'react-transition-group';
 
 export default class DetailedProfileView extends React.Component {
   constructor(props) {
@@ -45,6 +46,12 @@ export default class DetailedProfileView extends React.Component {
 
   render() {
     return (
+      <CSSTransition
+        in={true}
+        appear={true}
+        classNames="fade"
+        timeout={500}
+      >
       <div>
         <div className="d-flex sticky-top bg-bar justify-content-between align-items-center">
           <i className="fas fa-angle-left fas-size p-2"
@@ -59,11 +66,15 @@ export default class DetailedProfileView extends React.Component {
             <div className="row col-12 text-light h3">
               <div className="card-font col-12 font-size-2rem">Meet {this.state.user.firstName}</div>
             </div>
-            <div className="row col-12 text-light h5 rounded-bottom">
-              <div className="col-4 fas fa-birthday-cake">  {this.state.user.age}</div>
-              <div className="col-4 fas fa-ruler-vertical">  {this.state.user.height}</div>
-              <div className="col-4 fas fa-male">  {this.state.user.gender}</div>
-            </div>
+            <div className="row bg-secondary">
+              <div className="row col-12 text-light h3">
+                <div className="col-12">Meet {this.state.user.firstName}</div>
+              </div>
+              <div className="row col-12 text-light h5 rounded-bottom">
+                <div className="col-4 fas fa-birthday-cake">  {this.state.user.age}</div>
+                <div className="col-4 fas fa-ruler-vertical">  {this.state.user.height}</div>
+                <div className="col-4 fas fa-male">  {this.state.user.gender}</div>
+              </div>
           </div>
           <div className='bottomBox'>
             <div className="row">
@@ -102,7 +113,7 @@ export default class DetailedProfileView extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </CSSTransition>
     );
   }
 }

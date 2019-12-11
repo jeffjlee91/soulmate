@@ -6,7 +6,6 @@ export default class SignIn extends React.Component {
     this.state = {
       email: '',
       password: '',
-      emailCheck: '',
       passwordCheck: ''
     };
   }
@@ -26,11 +25,10 @@ export default class SignIn extends React.Component {
       .then(res => res.json())
       .then(result => {
         if (result === 'no user exist') {
-          this.setState({ emailCheck: 'No user exist' });
+          this.setState({ passwordCheck: 'wrong password or email' });
         } else if (result === 'wrong password') {
           this.setState({
-            emailCheck: '',
-            passwordCheck: 'Wrong password'
+            passwordCheck: 'wrong password or email'
           });
         } else {
           this.props.setView('discover-page', result);
@@ -70,7 +68,6 @@ export default class SignIn extends React.Component {
                 minLength="3"
                 required />
               <div className="invalid-feedback">Cannot be empty!</div>
-              <div className="text-danger">{this.state.emailCheck}</div>
             </div>
             <div className="form-group mt-4">
               <input

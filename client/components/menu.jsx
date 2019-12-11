@@ -25,7 +25,7 @@ export default class Menu extends React.Component {
             <div
               className="d-flex justify-content-between">
               <div className="menu-hello">
-                Hello,
+                Hello {' '}
                 {this.props.currentUser.firstName}
               </div>
               <img
