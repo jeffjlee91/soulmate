@@ -80,7 +80,7 @@ class Filter extends React.Component {
       <div className='container bg-bar'>
         <nav className="bg-bar fixed-top navbar d-flex justify-content-between align-items-center">
           <i onClick={this.backWasClicked} className="fas fa-angle-left fas-size p-2"></i>
-          <h3 className='paddingRight'>Filter</h3>
+          <h4 className='paddingRight'>Filter</h4>
         </nav>
 
         <div className="form-group filterlist">

@@ -58,9 +58,9 @@ export default class DetailedProfileView extends React.Component {
               onClick={() => this.props.setView(this.props.info.previousPage, this.props.currentUser)}></i>
             <h4 className='paddingRight'>Profile</h4>
           </div>
-          <div className="container bg-bar mb-2">
-            <div className="row">
-              <img src={this.state.user.images} alt="some guy face" className="img-fluid photo-size rounded-top" />
+          <div className="row bg-secondary rounded-bottom">
+            <div className="row col-12 text-light h3">
+              <div className="card-font col-12 font-size-2rem">Meet {this.state.user.firstName}</div>
             </div>
             <div className="row bg-secondary rounded-bottom">
               <div className="row col-12 text-light h3">
