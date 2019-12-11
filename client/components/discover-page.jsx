@@ -293,6 +293,8 @@ class DiscoverDetail extends React.Component {
             )}
           ></img>
           <div className='card-body'>
+            <img rel='/images/bouqet-menu.jpg'></img>
+
             <img src='/images/SwirlsLeft.png' className='swirl-left-image'></img>
             <img src='/images/SwirlsRight.png' className='swirl-right-image'></img>
             <h2 className='card-font'>{this.props.users.firstName}{', '}{this.props.users.age}</h2>
