@@ -25,10 +25,6 @@ export default class MainLogin extends React.Component {
             type="button"
             className="btn btn-secondary col-10 mt-3 mb-3 btn-shadow"
             onClick={this.newUserHandler.bind(this)}>New User</button>
-          <div className="row mt-2 d-flex justify-content-between">
-            <button type="button" className="btn btn-primary col-5.5 mt-2 btn-shadow button">Facebook </button>
-            <button type="button" className="btn btn-danger col-5.5 mt-2 ml-2 btn-shadow button">Google</button>
-          </div>
         </div>
       </div>
     );

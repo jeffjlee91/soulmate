@@ -85,7 +85,7 @@ export default class NewUser extends React.Component {
 
   render() {
     return (
-      <div className="pb-2">
+      <div className="container pb-2">
         <div className="bg-bar sticky-top d-flex justify-content-left align-items-center">
           <i
             className="fas fa-angle-left fas-size p-2"

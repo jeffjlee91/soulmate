@@ -128,17 +128,10 @@ export default class App extends React.Component {
         );
       case 'change-password':
         return (
-          <CSSTransition
-            in={true}
-            appear={true}
-            classNames="left-slide-in"
-            timeout={500}
-          >
-            <ChangePassword
-              setView={this.setView}
-              currentUser={this.state.view.params}
-              previousPage={this.state.view.info}/>
-          </CSSTransition>
+          <ChangePassword
+            setView={this.setView}
+            currentUser={this.state.view.params}
+            previousPage={this.state.view.info}/>
         );
       case 'edit':
         return (
