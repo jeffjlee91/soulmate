@@ -49,7 +49,9 @@ export default class SignIn extends React.Component {
   render() {
     return (
       <div className="container bg-bar">
-        <div className="d-flex justify-content-center row align-content-center full-view-height">
+        <div className="d-flex justify-content-center row align-content-center full-view-height add-bot-margin">
+          <img src='/images/flower5-menu1.png' className='sign-in-background1'></img>
+          <img src='/images/flower5-menu2.png' className='sign-in-background2'></img>
           <h1 className="title col-12">Soul Mate</h1>
           <div className="mt-2 slogan">Soulmate is an overused term,</div>
           <div className="mb-5 slogan">but a true soul connection is very rare, and very real.</div>
