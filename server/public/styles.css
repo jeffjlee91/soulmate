@@ -67,11 +67,17 @@ body {
 }
 
 .message-body-right {
-  background-color: #00ff0aa6;
+  background-color: #00bf07a6;
 }
 
-.message-arrow-left, .message-arrow-right {
-  color: #353535;
+.message-arrow-left {
+  color: #0500ff70;
+  font-size: 20px;
+  margin-top: 17px;
+}
+
+.message-arrow-right {
+  color: #00bf07a6;
   font-size: 20px;
   margin-top: 17px;
 }
