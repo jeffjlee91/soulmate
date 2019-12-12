@@ -20,7 +20,8 @@ export default class Edit extends React.Component {
         iAm: '',
         iAppreciate: ''
       },
-      imageFile: {}
+      imageFile: {},
+      imageCheck: ''
     };
     this.inputHandler = this.inputHandler.bind(this);
   }
@@ -59,23 +60,52 @@ export default class Edit extends React.Component {
   }
 
   uploadHandler(event) {
+    event.preventDefault();
+
+    const getExtension = fileName => {
+      let result = '';
+      for (let index = fileName.length - 1; index > 0; index--) {
+        if (fileName[index] === '.') {
+          break;
+        }
+        result = fileName[index] + result;
+      }
+      return result.toLowerCase();
+    };
     const fd = new FormData();
     fd.append(
       'image',
       this.state.imageFile,
-      this.state.imageFile.name.split('.').splice(1).join('')
+      getExtension(this.state.imageFile.name)
     );
-    const req = {
-      method: 'POST',
-      body: fd
-    };
-    fetch('/api/upload-image', req)
-      .then(res => res.json())
-      .then(result => {
-        const userInfo = { ...this.state.userInfo };
-        userInfo.images = result.split('/').slice(2).join('/');
-        this.setState({ userInfo });
-      }).catch(err => alert('uploaderHandler error', err));
+
+    const extensions = ['jpg', 'jpeg', 'png'];
+    const imageSize = fd.get('image').size;
+    const imageExt = fd.get('image').name;
+
+    if (extensions.includes(imageExt)) {
+      if (imageSize < 2097152) {
+        const req = {
+          method: 'POST',
+          body: fd
+        };
+        fetch('/api/upload-image', req)
+          .then(res => res.json())
+          .then(result => {
+            const userInfo = { ...this.state.userInfo };
+            userInfo.images = result.split('/').slice(2).join('/');
+            this.setState({
+              userInfo,
+              imageCheck: ''
+            });
+          }).catch(err => alert('uploaderHandler error', err));
+      } else {
+        this.setState({ imageCheck: 'picture should be no bigger than 2MB' });
+      }
+    } else {
+      this.setState({ imageCheck: 'wrong picture type, only accept jpg/png/jpeg' });
+    }
+
     event.preventDefault();
   }
 
@@ -112,6 +142,7 @@ export default class Edit extends React.Component {
               <div className="form-group row">
                 <img src={this.state.userInfo.images} className="photo-size col-12" />
               </div>
+              <div className="text-danger">{this.state.imageCheck}</div>
               <div className="form-group row d-flex justify-content-center">
                 <input type="file" className="btn btn-secondary col-8" onChange={this.fileSelectHandler.bind(this)} />
                 <button type="submit" name="upload" className="btn btn-primary btn-block col-3 ml-2">Upload</button>

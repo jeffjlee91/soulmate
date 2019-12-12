@@ -23,7 +23,8 @@ export default class NewUser extends React.Component {
         iAppreciate: ''
       },
       imageFile: {},
-      emailCheck: ''
+      emailCheck: '',
+      imageCheck: 'please upload your picture'
     };
     this.inputHandler = this.inputHandler.bind(this);
   }
@@ -53,23 +54,51 @@ export default class NewUser extends React.Component {
   }
 
   uploadHandler(event) {
+    const getExtension = fileName => {
+      let result = '';
+      for (let index = fileName.length - 1; index > 0; index--) {
+        if (fileName[index] === '.') {
+          break;
+        }
+        result = fileName[index] + result;
+      }
+      return result.toLowerCase();
+    };
     const fd = new FormData();
     fd.append(
       'image',
       this.state.imageFile,
-      this.state.imageFile.name.split('.').splice(1).join('')
+      getExtension(this.state.imageFile.name)
     );
-    const req = {
-      method: 'POST',
-      body: fd
-    };
-    fetch('/api/upload-image', req)
-      .then(res => res.json())
-      .then(result => {
-        const newUser = { ...this.state.newUser };
-        newUser.images = result.split('/').slice(2).join('/');
-        this.setState({ newUser });
-      }).catch(err => alert('uploaderHandler error', err));
+
+    const extensions = ['jpg', 'jpeg', 'png'];
+    const imageSize = fd.get('image').size;
+    const imageExt = fd.get('image').name;
+
+    if (extensions.includes(imageExt)) {
+      if (imageSize < 2097152) {
+        const req = {
+          method: 'POST',
+          body: fd
+        };
+        fetch('/api/upload-image', req)
+          .then(res => res.json())
+          .then(result => {
+            const newUser = { ...this.state.newUser };
+            newUser.images = result.split('/').slice(2).join('/');
+            this.setState({
+              newUser,
+              imageCheck: ''
+            });
+
+          }).catch(err => alert('uploaderHandler error', err));
+      } else {
+        this.setState({ imageCheck: 'picture should be no bigger than 2MB' });
+      }
+    } else {
+      this.setState({ imageCheck: 'wrong picture type, only accept jpg/png/jpeg' });
+    }
+
     event.preventDefault();
   }
 
@@ -95,6 +124,9 @@ export default class NewUser extends React.Component {
         <form onSubmit={this.uploadHandler.bind(this)}>
           <div className="form-group row">
             <img src={this.state.newUser.images} className="photo-size col-12" />
+          </div>
+          <div className="text-danger">
+            {this.state.imageCheck}
           </div>
           <div className="form-group row d-flex justify-content-center">
             <input type="file" className="btn btn-secondary col-8" onChange={this.fileSelectHandler.bind(this)}/>
