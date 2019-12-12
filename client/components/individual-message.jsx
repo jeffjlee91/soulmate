@@ -57,16 +57,16 @@ export default class IndividualMessage extends React.Component {
   }
 
   componentDidMount() {
-    // this.interval = setInterval(
-    //   () => this.getMessages(
-    //     this.props.userId.idFrom,
-    //     this.props.userId.idTo),
-    //     500
-    //   );
-    this.getMessages(
-      this.props.userId.idFrom,
-      this.props.userId.idTo
+    this.interval = setInterval(
+      () => this.getMessages(
+        this.props.userId.idFrom,
+        this.props.userId.idTo),
+      500
     );
+    // this.getMessages(
+    //   this.props.userId.idFrom,
+    //   this.props.userId.idTo
+    // );
   }
 
   sendMessage() {
