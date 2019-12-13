@@ -20,7 +20,8 @@ export default class UserUploadPhoto extends React.Component {
     });
   }
 
-  uploadHandler() {
+  uploadHandler(event) {
+    event.preventDefault();
     const getExtension = fileName => {
       let result = '';
       for (let index = fileName.length - 1; index > 0; index--) {
@@ -64,8 +65,6 @@ export default class UserUploadPhoto extends React.Component {
     } else {
       this.setState({ imageCheck: 'wrong picture type, only accept jpg/png/jpeg' });
     }
-
-    event.preventDefault();
   }
 
   postHandler() {
