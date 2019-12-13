@@ -63,21 +63,21 @@ body {
 }
 
 .message-body-left {
-  background-color: #0500ff70;
+  background-color: #8f8dff;
 }
 
 .message-body-right {
-  background-color: #00bf07a6;
+  background-color: #00bf07;
 }
 
 .message-arrow-left {
-  color: #0500ff70;
+  color: #8f8dff;
   font-size: 20px;
   margin-top: 17px;
 }
 
 .message-arrow-right {
-  color: #00bf07a6;
+  color: #00bf07;
   font-size: 20px;
   margin-top: 17px;
 }
@@ -434,8 +434,8 @@ body {
   border-radius: 50%;
   position: absolute;
   overflow: hidden;
-  top: -15%;
-  right: -80%;
+  top: -20%;
+  right: -50%;
   z-index: -1;
   box-shadow: -3px 2px 20px 0px black;
 }
