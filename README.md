@@ -67,7 +67,7 @@ A web application for young people, and who want to find the ideal other half in
     ```
 
 ### Preview
-![soulmate](https://user-images.githubusercontent.com/31264160/71122388-61760b00-21d8-11ea-969a-18285498836a.gif)
+![soulmate](https://user-images.githubusercontent.com/31264160/71122927-83bc5880-21d9-11ea-9d80-9c4a464a7449.gif)
 
 ### Live Demo
 Try the application live at https://soulmate.michaelkchang.com
