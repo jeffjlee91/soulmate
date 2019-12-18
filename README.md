@@ -65,3 +65,15 @@ A web application for young people, and who want to find the ideal other half in
     ```bash
     $npm run dev
     ```
+
+### Preview
+![soulmate](https://user-images.githubusercontent.com/31264160/71122388-61760b00-21d8-11ea-969a-18285498836a.gif)
+
+### Live Demo
+Try the application live at https://soulmate.michaelkchang.com
+
+To login use the username jeff@soulmate.com with password 'novahaha'
+
+ctrl + shift + i to open dev tools
+
+preview in iPhone X for optimal viewing
